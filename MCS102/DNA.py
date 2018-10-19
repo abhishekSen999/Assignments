@@ -41,7 +41,7 @@ class DNA(object):
                         index=random.randint(0,len(perm_slots)-2)
                         
                          #checking if two concecutive slots are on the same day that is it is not the last available slot of the day
-                        if  int(perm_slots[index][0])==int(perm_slots[index+1][0]):
+                        if  int(perm_slots[index][0])==int(perm_slots[index+1][0]) and int(perm_slots[index][2])==int(perm_slots[index+1][2])-1 :
                             break
                     #alloting the selected slot
                     lab_class1of2=perm_slots[index]
@@ -269,6 +269,129 @@ class DNA(object):
                 lab_class1of2=perm_slots[mutation_value_index]
                 lab_class2of2=perm_slots[mutation_value_index+1]
                 self.lab_day_time_allotment[i][mutation_index]=str(lab_class1of2+":"+lab_class2of2)
+                
+                
+                
+                
+                
+                
+                
+                
+    def calculate_fitness1(self):
+        import numpy as np
+        import random
+        course_professor_map={
+            'MCA-101':'NK',
+            'MCA-102':'SV',
+            'MCA-103':'PR',
+            'MCA-104':'NS',
+            'MCA-105':'DK',
+            'MCA-106':'SP',
+            'MCA-301':'RK',
+            'MCA-302':'RC',
+            'MCA-303':'NS',
+            'MCA-304':'MK',
+            'MCA-305':'PKH',
+            'MCS-101':'NG',
+            'MCS-102':'PB',
+            'MCS-103':'RG',
+            'MCS-104':'RK',
+            'MCS-105':'NK',
+            'MCS-302':'RC',
+            'MCS-303':'PB',
+            'MCS-304':'MS',
+            'MCS-311':'VB',
+            'MCS-312':'NG',
+            'MCS-326':'SK'
+
+            }
+        #making map dictionary for swift hashing
+        professor_index_map={}
+        for i,j in zip(self.professors,range(len(self.professors))):
+            professor_index_map[i]=j
+        
+        
+        
+        days=6
+        
+        #professor_time_table of structure(professor_index,day,time)
+        professor_timetable=np.zeros((len(self.professors),days,int(len(self.day_time_slots)/days)))
+        
+        #filling uup professor_time_table with theory classes, stores the number of classes in each slot
+        for i in range(len(self.theory_day_time_allotment)):
+            for j in range(len(self.theory_day_time_allotment[i])):
+                #calculating indexes for professor_timetable
+                professor_index=professor_index_map[course_professor_map[self.theory_class_wise_partition[i][j]]]
+                day_index=int(self.theory_day_time_allotment[i][j][0])
+                time_index=int(self.theory_day_time_allotment[i][j][2])
+                professor_timetable[professor_index][day_index][time_index]+=1
+        
+        
+        #filling up professor_time_table with lab classes, stores the number of classes in each slot
+        for i in range(len(self.lab_day_time_allotment)):
+            for j in range(len(self.lab_day_time_allotment[i])):
+                #calculating indexes for professor_timetable
+                professor_index=professor_index_map[course_professor_map[self.lab_class_wise_partition[i][j]]]
+                day_index=int(self.lab_day_time_allotment[i][j][0])
+                #two time indexes as each class takes 2 consecutive slots
+                time_index1=int(self.lab_day_time_allotment[i][j][2])
+                time_index2=int(self.lab_day_time_allotment[i][j][6])
+                professor_timetable[professor_index][day_index][time_index1]+=1
+                professor_timetable[professor_index][day_index][time_index2]+=1
+                
+                
+        
+        
+        
+        course_map={
+                'MCA-1':0,
+                'MCA-3':1,
+                'MCS-1':2,
+                'MCS-3':3
+            }
+        
+        collisions=0
+        for i in range(len(professor_timetable)):
+            for j in range(len(professor_timetable[i])):
+                for k in range(len(professor_timetable[i][j])):
+                    if professor_timetable[i][j][k]>1:
+                        collisions+=professor_timetable[i][j][k]-1
+        
+        self.collisions=collisions
+        self.individual_fitness=1/(collisions+1)
+                  
+        
+        
+        """
+        #preparing student time table
+        student_timetable=np.zeros((len(theory_day_time_allotment),days,int(len(self.day_time_slots)/days)),dtype="S15")
+        
+        
+        for i in range(len(self.theory_day_time_allotment)):
+            for j in range(len(self.theory_day_time_allotment[i])):
+                #calculating indexes for student_timetable
+                dash=self.day_time_allotment[i][j].find('-')
+                student_index=course_map[str(theory_class_wise_partition[i][j][0:5])]
+                day_index=int(self.day_time_allotment[i][j][0:dash])
+                time_index=int(self.day_time_allotment[i][j][dash+1:])
+                
+                student_timetable[student_index][day_index][time_index]=theory_class_wise_partition[i][j]+course_professor_map[theory_class_wise_partition[i][j]]
+        
+      
+        for i in student_timetable:
+            print (i,"\n")
+        """   
+        
+        print(collisions)
+        
+        for i in professor_timetable:
+            print (i,"\n")
+        
+    
+    
+        return self.individual_fitness  
+    
+  
             
             
             

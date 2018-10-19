@@ -28,9 +28,11 @@ class SetupEvolution(object):
             p.generate()
             p.calculate_fitness()
             final_timetable=p.check_completion()
+            print("generation: ",p.get_generation())
             if (p.get_finished()): break
         
         print("total number of generations: ",p.get_generation())
+        print(type(final_timetable))
         return final_timetable
             
     

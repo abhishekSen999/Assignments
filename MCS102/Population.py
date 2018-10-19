@@ -97,16 +97,19 @@ class Population(object):
         self.generation+=1
     
     
-    def check_completion(self):
+    def check_completion(self):#returns the best child
         
         index_best_dna=0
         for i in range(1,self.size):
             index_best_dna= i if self.population[i].fitness>self.population[index_best_dna].fitness else index_best_dna
         
         if self.population[index_best_dna].individual_fitness==1:
+            
             self.finished=True
+            return self.population[index_best_dna]
         else:
             self.finished=False
+                
                 
     def get_finished(self):
         return self.finished
