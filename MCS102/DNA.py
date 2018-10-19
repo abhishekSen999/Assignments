@@ -1,3 +1,4 @@
+import numpy as np
 class DNA(object):
     
     #self.day_time_allotment

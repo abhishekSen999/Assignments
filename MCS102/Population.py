@@ -6,6 +6,9 @@ Created on Fri Oct 19 13:51:24 2018
 """
 
 #class population to create a population of dna of predefined size
+import DNA 
+import CourseInformation as ci
+import numpy as np
 class Population(object):
     def __init__(self,size,mutation_rate,crossover_rate,elite,absolute_path):
         
@@ -15,12 +18,12 @@ class Population(object):
         self.crossover_rate=crossover_rate
         self.elite=elite#states the number of elite DNA strands which will get passed on to the next generation
         #self.population=np.empty(self.size,dtype=object)
-        self.population=np.empty(self.size,dtype=DNA)
+        self.population=np.empty(self.size,dtype=object)
         self.generation=0
         
-        crs_info=CourseInformation(absolute_path)#getting course information using CourseInformation class
+        crs_info=ci.CourseInformation(absolute_path)#getting course information using CourseInformation class
         for i in range(self.size):
-            self.population[i]=DNA(crs_info.theory_class_wise_partition,crs_info.day_time_slots,crs_info.professors,crs_info.lab_class_wise_partition)
+            self.population[i]=DNA.DNA(crs_info.theory_class_wise_partition,crs_info.day_time_slots,crs_info.professors,crs_info.lab_class_wise_partition)
     
     
     def calculate_fitness(self):
@@ -49,7 +52,7 @@ class Population(object):
         #as elite<<n hence this is better than n*logn
         last_elite=-1
         new_population_index=0
-        for i in range(self.elite):
+        for i in range(int(self.elite)):
             max_fitness_index=-1
             #finding the index to start searching from 
             if last_elite == -1:
@@ -72,9 +75,9 @@ class Population(object):
     def generate(self):
         
         #creating new population using elitism, crossover and mutation
-        new_population=np.empty(self.size,dtype=DNA)
+        new_population=np.empty(self.size,dtype=object)
         self.elitism(new_population)
-        for i in range (self.elite,self.size):
+        for i in range (int(self.elite),int(self.size)):
             p1,p2=0,0
             while True:
                 p1=self.natural_selection()
@@ -98,7 +101,7 @@ class Population(object):
         
         index_best_dna=0
         for i in range(1,self.size):
-            index_best_dna= i if self.population[i].fitness>self.population[index_best_dna] else index_best_dna
+            index_best_dna= i if self.population[i].fitness>self.population[index_best_dna].fitness else index_best_dna
         
         if self.population[index_best_dna].individual_fitness==1:
             self.finished=True
