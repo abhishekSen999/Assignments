@@ -1,17 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Oct 18 10:56:57 2018
-
-@author: abhishek sen
-"""
-
 #course_information
 class CourseInformation(object):
     
-    def __init__(self,absolute_address='E:/Assignments/MCS102/COURSE_DATA.csv'):
+    def __init__(self,absolute_path='E:/Assignments/MCS102/COURSE_DATA.csv'):
         import pandas as pd
         import numpy as np
-        course_data=pd.read_csv(absolute_address)
+        course_data=pd.read_csv(absolute_path)
         
         self.professors=np.array(course_data.professor.unique())
         
@@ -54,5 +47,4 @@ class CourseInformation(object):
             for ts in range(len(time_slots)):
                 self.day_time_slots[index]=str(ds)+"-"+str(ts) 
                 index+=1
-
 

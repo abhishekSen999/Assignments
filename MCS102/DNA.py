@@ -15,9 +15,10 @@ class DNA(object):
         self.lab_class_wise_partition=lab_class_wise_partition
         self.day_time_slots=np.copy(day_time_slots)
         self.professors=np.copy(professors)
-        self.fitness=0.0
-        
+        self.fitness=0.0 #denotes its fitness rate in the whole population
+        self.individual_fitness=0.0 #denotes it's individual fitness
         self.theory_day_time_allotment=np.empty(np.shape(theory_class_wise_partition),dtype=object)
+        
         for i in range(np.shape(self.theory_day_time_allotment)[0]): 
             self.theory_day_time_allotment[i]=np.empty(np.shape(theory_class_wise_partition[i]),dtype=object)
         
@@ -137,7 +138,8 @@ class DNA(object):
                     if professor_timetable[i][j][k]>1:
                         collisions+=professor_timetable[i][j][k]-1
         
-        self.fitness=1/(collisions+1)
+        self.collisions=collisions
+        self.individual_fitness=1/(collisions+1)
                   
         
         
@@ -168,7 +170,7 @@ class DNA(object):
         """
     
     
-        return self.fitness  
+        return self.individual_fitness  
     
     
     #crossover function
@@ -211,7 +213,7 @@ class DNA(object):
         fitness_offspring1=offspring1.calculate_fitness()
         fitness_offspring2=offspring2.calculate_fitness()
         
-        print(fitness_offspring1,fitness_offspring2)
+        #print(fitness_offspring1,fitness_offspring2)
         bestOffspring=offspring1 if fitness_offspring1 > fitness_offspring2 else offspring2
        
         return bestOffspring
@@ -262,7 +264,7 @@ class DNA(object):
                     if  int(perm_slots[mutation_value_index][0])==int(perm_slots[mutation_value_index+1][0]) and int(perm_slots[mutation_value_index][2])+1==int(perm_slots[mutation_value_index+1][2]):
                         break
                 #alloting the selected slot
-                print("mutation_value_index",mutation_value_index)
+                #print("mutation_value_index",mutation_value_index)
                 lab_class1of2=perm_slots[mutation_value_index]
                 lab_class2of2=perm_slots[mutation_value_index+1]
                 self.lab_day_time_allotment[i][mutation_index]=str(lab_class1of2+":"+lab_class2of2)
