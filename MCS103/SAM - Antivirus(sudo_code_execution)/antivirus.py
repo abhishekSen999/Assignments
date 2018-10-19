@@ -18,8 +18,9 @@ def main():
    
     #create a set of files that are in the defined path
     path = args.path
-    path = os.path.join(os.getcwd(), '/Users/abhishek sen/Desktop/SAM/MyDirectory')
     
+    #path = os.path.join(os.getcwd(), '/Users/abhishek sen/Desktop/SAM/MyDirectory')
+    path=input("enter the absolute path of the directory in which files are present p(/ should be used): ")
     files = set()
     for arg in args.extension:
         contents = glob.glob(path + '/*' + arg)
