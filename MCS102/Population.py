@@ -45,7 +45,7 @@ class Population(object):
             if self.population[pi].fitness>rnd: return pi
             if check>1000: break
         return -1
-        
+    """     
     def elitism(self,new_population):
         #as sorting on basis of fitness is n*logn complexity at best,
         #we would preffer selecting 'elite' times  best DNA which is elite*n complexity
@@ -71,7 +71,43 @@ class Population(object):
             new_population[i]=self.population[max_fitness_index]
             
             last_elite=max_fitness_index
+    
+    """
+
+
+    def elitism(self,new_population):
+        #elite=3
+        #population=np.array([1,4,7,4,9,5,4,3,5,3])
+        #new_population=np.empty(len(population),dtype=np.int64)
+        
+        last_elite=-1
+        
+        
+        new_population_index=0
+        for i in range(int(self.elite)):
+            #print("last_elite",last_elite)
+            index_max_fitness=-1
+            if last_elite==-1:
+                index_max_fitness=0
+            else:
+                for j in range (len(self.population)):
+                    if self.population[j].fitness<=self.population[last_elite].fitness and j!= last_elite:
+                        index_max_fitness=j
+                        
+            for j in range (len(self.population)):
+                if last_elite==-1:
+                    if self.population[j].fitness>self.population[index_max_fitness].fitness:
+                        index_max_fitness=j
+                else:
+                    if self.population[j].fitness>self.population[index_max_fitness].fitness and self.population[j].fitness<=self.population[last_elite].fitness and j!= last_elite:
+                        index_max_fitness=j
             
+            new_population[new_population_index]=self.population[index_max_fitness]
+            new_population_index+=1
+            last_elite=index_max_fitness
+            
+
+        
     def generate(self):
         
         #creating new population using elitism, crossover and mutation
@@ -109,6 +145,7 @@ class Population(object):
             return self.population[index_best_dna]
         else:
             self.finished=False
+            return self.population[index_best_dna]
                 
                 
     def get_finished(self):

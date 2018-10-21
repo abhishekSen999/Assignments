@@ -28,7 +28,7 @@ class SetupEvolution(object):
             p.generate()
             p.calculate_fitness()
             final_timetable=p.check_completion()
-            print("generation: ",p.get_generation())
+            print("generation: ",p.get_generation(),"student collisions: ",final_timetable.student_collisions,"prfessor collisions: ",final_timetable.professor_collisions,"overall fitness in that generation",final_timetable.fitness)
             if (p.get_finished()): break
         
         print("total number of generations: ",p.get_generation())
