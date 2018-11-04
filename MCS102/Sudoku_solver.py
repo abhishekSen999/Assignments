@@ -7,7 +7,7 @@ Created on Tue Oct 23 23:27:44 2018
 
 class Sudoku_solver(object):
     def generate(self):
-        
+        print("fuck")
         
         
         
