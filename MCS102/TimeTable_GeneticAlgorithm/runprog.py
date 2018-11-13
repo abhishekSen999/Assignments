@@ -12,7 +12,7 @@ import SetupEvolution as se
 import DNA
 ob=se.SetupEvolution(0.1)
 #absolute_path=input("enter the absolute path : ")
-absolute_path='E:/Assignments/MCS102/COURSE_DATA.csv'
+absolute_path='E:/Assignments/MCS102/TimeTable_GeneticAlgorithm/COURSE_DATA.csv'
 dna1=ob.generate(absolute_path)
 dna1.calculate_fitness1()
 

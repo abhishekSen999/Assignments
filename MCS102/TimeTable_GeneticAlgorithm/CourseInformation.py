@@ -1,7 +1,7 @@
 #course_information
 class CourseInformation(object):
     
-    def __init__(self,absolute_path='E:/Assignments/MCS102/COURSE_DATA.csv'):
+    def __init__(self,absolute_path='E:/Assignments/MCS102/TimeTable_GeneticAlgorithm/COURSE_DATA.csv'):
         import pandas as pd
         import numpy as np
         course_data=pd.read_csv(absolute_path)
