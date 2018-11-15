@@ -395,29 +395,84 @@ class DNA(object):
                   
         
         
-        """
-        #preparing student time table
-        student_timetable=np.zeros((len(theory_day_time_allotment),days,int(len(self.day_time_slots)/days)),dtype="S15")
+        #preparing student time table 
+        student_timetable=np.zeros((len(self.theory_day_time_allotment),days,int(len(self.day_time_slots)/days)))
         
-        
+        #filling  student table with theory classes 
         for i in range(len(self.theory_day_time_allotment)):
             for j in range(len(self.theory_day_time_allotment[i])):
                 #calculating indexes for student_timetable
-                dash=self.day_time_allotment[i][j].find('-')
-                student_index=course_map[str(theory_class_wise_partition[i][j][0:5])]
-                day_index=int(self.day_time_allotment[i][j][0:dash])
-                time_index=int(self.day_time_allotment[i][j][dash+1:])
+                #dash=self.day_time_allotment[i][j].find('-')
+                student_index=course_map[str(self.theory_class_wise_partition[i][j][0:5])]
+                day_index=int(self.theory_day_time_allotment[i][j][0])
+                time_index=int(self.theory_day_time_allotment[i][j][2])
                 
-                student_timetable[student_index][day_index][time_index]=theory_class_wise_partition[i][j]+course_professor_map[theory_class_wise_partition[i][j]]
+                student_timetable[student_index][day_index][time_index]+=1
+                
+        #filling  student table with lab classes 
+        for i in range(len(self.lab_day_time_allotment)):
+            for j in range(len(self.lab_day_time_allotment[i])):
+                #calculating indexes for student_timetable
+                #dash=self.day_time_allotment[i][j].find('-')
+                student_index=course_map[str(self.lab_class_wise_partition[i][j][0:5])]
+                day_index=int(self.lab_day_time_allotment[i][j][0])
+                #two time indexes as each class takes 2 consecutive slots
+                time_index1=int(self.lab_day_time_allotment[i][j][2])
+                time_index2=int(self.lab_day_time_allotment[i][j][6])
+                
+                student_timetable[student_index][day_index][time_index1]+=1
+                student_timetable[student_index][day_index][time_index2]+=1
         
-      
-        for i in student_timetable:
-            print (i,"\n")
-        """   
+        collisions=0
+        for i in range(len(student_timetable)):
+            for j in range(len(student_timetable[i])):
+                for k in range(len(student_timetable[i][j])):
+                    if student_timetable[i][j][k]>1:
+                        collisions+=student_timetable[i][j][k]-1
         
-        print(collisions)
+        self.collisions+=collisions
+        print(self.collisions)
+        
+        #creating finl time table of 4 classes
+        student_timetable=np.empty((len(self.theory_day_time_allotment),days,int(len(self.day_time_slots)/days)),dtype=object)
+        
+        for i in range(len(student_timetable)):
+            for j in range(len(student_timetable[i])):
+                for k in range(len(student_timetable[i][j])):
+                    student_timetable[i][j][k]=str("")
+        
+        #filling  student table with theory classes 
+        for i in range(len(self.theory_day_time_allotment)):
+            for j in range(len(self.theory_day_time_allotment[i])):
+                #calculating indexes for student_timetable
+                #dash=self.day_time_allotment[i][j].find('-')
+                student_index=course_map[str(self.theory_class_wise_partition[i][j][0:5])]
+                day_index=int(self.theory_day_time_allotment[i][j][0])
+                time_index=int(self.theory_day_time_allotment[i][j][2])
+                
+                student_timetable[student_index][day_index][time_index]=str(student_timetable[student_index][day_index][time_index])+str(self.theory_class_wise_partition[i][j])
+                
+        #filling  student table with lab classes 
+        for i in range(len(self.lab_day_time_allotment)):
+            for j in range(len(self.lab_day_time_allotment[i])):
+                #calculating indexes for student_timetable
+                #dash=self.day_time_allotment[i][j].find('-')
+                student_index=course_map[str(self.lab_class_wise_partition[i][j][0:5])]
+                day_index=int(self.lab_day_time_allotment[i][j][0])
+                #two time indexes as each class takes 2 consecutive slots
+                time_index1=int(self.lab_day_time_allotment[i][j][2])
+                time_index2=int(self.lab_day_time_allotment[i][j][6])
+                
+                student_timetable[student_index][day_index][time_index1]=str(student_timetable[student_index][day_index][time_index1])+str(self.lab_class_wise_partition[i][j])
+                student_timetable[student_index][day_index][time_index2]=str(student_timetable[student_index][day_index][time_index2])+str(self.lab_class_wise_partition[i][j])
+        
+        self.student_timetable=student_timetable
         
         for i in professor_timetable:
+            print (i,"\n")
+            
+        print("student:")   
+        for i in student_timetable:
             print (i,"\n")
         
     
