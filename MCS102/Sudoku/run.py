@@ -10,22 +10,6 @@ import tkinter as tk
 from tkinter import *
 import tkinter
 import tkinter.messagebox as msgbox
-def execute():
-    s=size.get()
-    take_input(s)
-  
-
-
-
-master =tk.Tk()
-master.wm_title("SUDOKU")
-size_label=Label(master,text="Size of Side = ")
-size_label.grid(row=0, column=0 )
-size=Entry(master,width=20)
-size.grid(row=0,column=1,columnspan=20)
-confirm=Button(master, text = "start" , command= execute )
-confirm.grid(row =1, column=1)
-mainloop()
 
 
 def sudoku_execution(size,sudoku_entry):
@@ -42,9 +26,10 @@ def sudoku_execution(size,sudoku_entry):
             row.append(n)
             
         sudoku.append(row)
-    
+    print 
     ob=ss.Sudoku_solver()    
     recieved=ob.run(size,sudoku)
+    #recieved=ob.run(size)
     if recieved[0]==False:
         msgbox.showinfo("Error", "Invalid Input")
         
@@ -73,6 +58,26 @@ def take_input(s):
         
     Button(game, text='Find',command=lambda: sudoku_execution(size,sudoku_entry)).grid(row=size, column=size-1 )
     mainloop()
+    
+    
+    
+def execute():
+    s=size.get()
+    take_input(s)
+  
+
+
+
+master =tk.Tk()
+master.wm_title("SUDOKU")
+size_label=Label(master,text="Size of Side = ")
+size_label.grid(row=0, column=0 )
+size=Entry(master,width=20)
+size.grid(row=0,column=1,columnspan=20)
+confirm=Button(master, text = "start" , command= execute )
+confirm.grid(row =1, column=1)
+mainloop()
+
     
             
 

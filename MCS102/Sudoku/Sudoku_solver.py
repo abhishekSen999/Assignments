@@ -10,16 +10,17 @@ class Sudoku_solver(object):
         
         
     #returns a list [(true/false depending on whether it is solved or not),(the solved 2d array of True)]
-    def run(self,side=9,arr=[[5,3,0,0,7,0,0,0,0],[6,0,0,1,9,5,0,0,0],[0,9,8,0,0,0,0,6,0],[8,0,0,0,6,0,0,0,3],[4,0,0,8,0,3,0,0,1],[7,0,0,0,2,0,0,0,6],[0,6,0,0,0,0,2,8,0],[0,0,0,4,1,9,0,0,5],[0,0,0,0,8,0,0,7,9]]):
+    def run(self,side=9,arr=[[0,0,2,0,0,0,9,0,7],[0,0,8,0,0,0,0,0,0],[1,0,0,2,0,7,0,0,5],[0,8,0,0,0,5,0,0,0],[0,4,0,6,0,3,0,5,0],[0,0,0,9,0,0,0,7,2],[4,0,0,5,0,2,0,0,3],[0,1,0,0,0,0,0,0,0],[5,0,7,0,0,0,4,0,0]]):
         sudoku=np.copy(arr)
         if not self.isCorrect(side,sudoku):
+            print("\n1",sudoku)
             return [False]
         return self.sudoku_solver(side,arr,0,0)
         
         
         
         
-    def sudoku_solver(self,side=9,arr=[[5,3,0,0,7,0,0,0,0],[6,0,0,1,9,5,0,0,0],[0,9,8,0,0,0,0,6,0],[8,0,0,0,6,0,0,0,3],[4,0,0,8,0,3,0,0,1],[7,0,0,0,2,0,0,0,6],[0,6,0,0,0,0,2,8,0],[0,0,0,4,1,9,0,0,5],[0,0,0,0,8,0,0,7,9]],row=0,col=0):
+    def sudoku_solver(self,side,arr,row,col):
         
         root=int(math.sqrt(side))
         sudoku=np.copy(arr)
@@ -68,7 +69,7 @@ class Sudoku_solver(object):
             
         return[False]
     
-    def isCorrect(self,side,sudoku= np.array([[5, 3, 4, 6, 7, 8, 9, 1, 2],[6, 7, 2, 1, 9, 5, 3, 4, 8],[1, 9, 8, 3, 4, 2, 5, 6, 7],[8, 5, 9, 7, 6, 1, 4, 2, 3],[4, 2, 6, 8, 5, 3, 7, 9, 1],[7, 1, 3, 9, 2, 4, 8, 5, 6],[9, 6, 1, 5, 3, 7, 2, 8, 4],[2, 8, 7, 4, 1, 9, 6, 3, 5],[3, 4, 5, 2, 8, 6, 1, 7, 9]])):
+    def isCorrect(self,side,sudoku):
         root=int(math.sqrt(side))
         row=[0 for i in range(side+1)] 
         col=[0 for i in range(side+1)]
@@ -76,37 +77,41 @@ class Sudoku_solver(object):
         
         #checking correctness in row
         for i in range(side):
+             row=[0 for i in range(side+1)] 
              row_array=sudoku[i,:]
+             print(row_array)
              for j in range(side):
                  row[row_array[j]]+=1
                  
              for j in range(1,side+1):
                  if row[j]>1:
-                     print(row,j)
+                     print("row",row,j)
                      return False
         
         #checking correctness in column         
         for i in range(side):
+            col=[0 for i in range(side+1)]
             col_array=sudoku[:,i]
             for j in range(side):
                 col[col_array[j]]+=1
                 
             for j in range(1,side+1):
                 if col[j]>1:
-                    print(col,j)
+                    print("col",col,j)
                     return False
                 
         #checking correctness in each internal square
         i=0
         j=0
         while(i<side and j<side):
+            box=[0 for i in range(side+1)]
             box_array=sudoku[i:i+root,j:j+root].reshape(side)
             for k in range(side):
                 box[box_array[k]]+=1
             for k in range(1,side+1):
                 if box[k]>1:
                     print ("box",i,j)
-                    #print(box)
+                    print(box)
                     return False
                 
             j=(j+root)%side
@@ -117,7 +122,7 @@ class Sudoku_solver(object):
         return True
     
     
-    def isSolved(self,side=9,arr= np.array([[5, 3, 4, 6, 7, 8, 9, 1, 2],[6, 7, 2, 1, 9, 5, 3, 4, 8],[1, 9, 8, 3, 4, 2, 5, 6, 7],[8, 5, 9, 7, 6, 1, 4, 2, 3],[4, 2, 6, 8, 5, 3, 7, 9, 1],[7, 1, 3, 9, 2, 4, 8, 5, 6],[9, 6, 1, 5, 3, 7, 2, 8, 4],[2, 8, 7, 4, 1, 9, 6, 3, 5],[3, 4, 5, 2, 8, 6, 1, 7, 9]])):
+    def isSolved(self,side,arr):
         result=int(side*(side+1)/2)
         
         root=int(math.sqrt(side))
