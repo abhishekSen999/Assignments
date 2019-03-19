@@ -32,7 +32,7 @@ class BufferHeader:
         self.status_locked=0
 
     def isLocked():
-        if (self.status_locked==1)
+        if(self.status_locked==1):
             return True
         return False
 
@@ -47,7 +47,7 @@ class BufferHeader:
         self.status_valid=0
 
     def isValid():
-        if(self.status_valid==1)
+        if(self.status_valid==1):
             return True
         return False 
 
@@ -62,7 +62,7 @@ class BufferHeader:
         self.status_delayed_write =0
 
     def isDelayedWrite():
-        if(self.status_delayed_write ==1)
+        if(self.status_delayed_write ==1):
             return True
         return False 
 
@@ -71,15 +71,15 @@ class BufferHeader:
 
 
     def addWaitingProcess():
-        self.waiting_process_count + =1
+        self.waiting_process_count= self.waiting_process_count+ 1
     
     def removeWaitingProcess ():
-        if (self.waiting_process_count==0)
+        if (self.waiting_process_count==0):
             return -1
-        self.status_delayed_write - =1
+        self.status_delayed_write = self.waiting_process_count- 1
 
     def hasWaitingProcess ():
-        if(self.waiting_process_count >0)
+        if(self.waiting_process_count >0):
             return True
         return False 
 
