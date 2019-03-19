@@ -15,7 +15,7 @@ class BufferHeader:
 
 
 
-    def setBlockNumber(int block_number):
+    def setBlockNumber(block_number):
         self.block_number=block_number
 
     def getBlockNumber():
