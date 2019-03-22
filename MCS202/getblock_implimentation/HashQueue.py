@@ -1,7 +1,7 @@
 import BufferHeader
 import numpy as np
 class HashQueue(object):
-    def __init__(self,size):
+    def __init__(self,size=4):
         self.size=size
         self.hashQ=np.empty(self.size,dtype=object)
         for i in range(self.size):
@@ -55,8 +55,12 @@ class HashQueue(object):
     def printHashQ(self):
         for i in range(self.size):
             block=self.hashQ[i]
-            while(block!=None):
-                print("<-",block.getBlockNumber(),"->" )
+            if(block==None):
+                print("empty\n")
+                continue
+
+            while(True):
+                print("<-",block.getBlockNumber(),"->" ,end="")
                 block=block.getNextHashQ()
                 if(block==self.hashQ[i]):
                     break
@@ -65,13 +69,32 @@ class HashQueue(object):
             
 
 
-if __name__=="__main__":
-    # hQ=HashQueue(4)
-    # for i in range(20):
-    #     block=BufferHeader.BufferHeader(i)
-    #     hQ.addBlockToHashQ(block)
-    #     hQ.printHashQ()
-    #     print("end")
+# if __name__=="__main__":
+#     hQ=HashQueue(4)
+#     for i in range(20):
+#         block=BufferHeader.BufferHeader(i)
+#         hQ.addBlockToHashQ(block)
+        
+
+#     block=hQ.findBlockInHashQ(19)
+#     hQ.removeFromHashQ(block)
+#     hQ.removeFromHashQ(hQ.findBlockInHashQ(0))
+#     hQ.removeFromHashQ(hQ.findBlockInHashQ(4))
+#     hQ.removeFromHashQ(hQ.findBlockInHashQ(8))
+#     hQ.removeFromHashQ(hQ.findBlockInHashQ(12))
+#     hQ.removeFromHashQ(hQ.findBlockInHashQ(16))
+#     block.setBlockNumber(24)
+#     hQ.printHashQ()
+#     print("end")
+
+#     hQ.addBlockToHashQ(block)
+
+#     hQ.printHashQ()
+#     print("end")
+
+
+
+    
     
 
 

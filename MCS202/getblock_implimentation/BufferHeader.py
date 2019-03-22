@@ -3,7 +3,7 @@ class BufferHeader(object):
     def __init__(self,blockNumber=None):
         
         if(blockNumber==None):
-            self.block_number=0 #valid block  numbers are from 1 onwards
+            self.block_number=0 #valid block  numbers are from 0 onwards
         else:
             self.block_number=blockNumber
         self.status_locked=0
@@ -96,7 +96,7 @@ class BufferHeader(object):
         return self.hashQ_next
 
     def addNextHashQ(self,next):
-        if(isinstance(next,BufferHeader)):
+        if(isinstance(next,BufferHeader) ):
             self.hashQ_next=next
             return 1
         else:
@@ -111,7 +111,7 @@ class BufferHeader(object):
         return self.hashQ_prev
 
     def addPrevHashQ(self,prev):
-        if(isinstance(prev,BufferHeader)):
+        if(isinstance(prev,BufferHeader) ):
             self.hashQ_prev=prev
             return 1
         else:
