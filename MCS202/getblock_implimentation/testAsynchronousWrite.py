@@ -11,9 +11,9 @@ manager=BaseManager()
 manager.start()
 buffer=manager.BufferHeader(5)
 buffer.setDelayedWriteBit()
-
-pid=AsynchronousWrite.asynchronousWrite(buffer)
-pid=AsynchronousWrite.asynchronousWrite(buffer)
+lock=multiprocessing.Lock()
+pid=AsynchronousWrite.asynchronousWrite(lock,buffer)
+pid=AsynchronousWrite.asynchronousWrite(lock,buffer)
 print("1 ",buffer.isDelayedWrite())
 
 while(True):

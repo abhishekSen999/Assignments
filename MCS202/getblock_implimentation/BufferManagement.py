@@ -41,8 +41,9 @@ def getBlock(blockNumber,lock,hashQ,freeList):
                 #for revealing the scenario under which process is going to sleep
                 print("process: ",os.getpid()," came across block number: ",buffer.getBlockNumber(), "marked as delayed write so is executing asynchronous write")
 
-                AsynchronousWrite.asynchronousWrite(buffer)
+                
                 lock.release()
+                AsynchronousWrite.asynchronousWrite(lock,buffer)
                 continue
             hashQ.removeFromHashQ(buffer)
             buffer.setBlockNumber(blockNumber)

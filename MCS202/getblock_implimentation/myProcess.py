@@ -45,6 +45,12 @@ def process(hashQ,freeList,lock,maxNoOfBlocks):
         print("process : ",os.getpid()," has requested block number : ",requestedBlock)
         recievedBuffer=BufferManagement.getBlock(requestedBlock,lock,hashQ,freeList)
         print("process : ",os.getpid(),"recieved buffer: ",recievedBuffer.getBlockNumber())
+
+        print("\nhashQ: ")
+        hashQ.printHashQ()
+        print("\nfreeList")
+        freeList.printFreeList()
+
         
         sudoOperation(recievedBuffer)
 

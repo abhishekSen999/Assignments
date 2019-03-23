@@ -21,7 +21,7 @@ class HashQueue(object):
 
         return None
 
-    def isPresentinHashQ(self,blockNumber):
+    def isPresentInHashQ(self,blockNumber):
         if(self.findBlockInHashQ(blockNumber)!=None):
             return True
         return False
@@ -45,6 +45,9 @@ class HashQueue(object):
         return 1
 
     def removeFromHashQ(self,block):
+
+        if(block.getNextHashQ()==None and block.getPrevHashQ()==None):#block not in hashQ(starting cases)
+            return 1
         if(block.getNextHashQ()==block):#only one element in hashQ
             self.hashQ[block.getBlockNumber()%self.size]=None
             return 1
