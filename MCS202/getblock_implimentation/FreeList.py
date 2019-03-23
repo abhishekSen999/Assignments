@@ -3,18 +3,35 @@ import BufferHeader
 import numpy as np
 
 
+from multiprocessing.managers import BaseManager
+from multiprocessing import Process, Manager
+
+# BaseManager.register('BufferHeader',BufferHeader.BufferHeader)
+# manager=BaseManager()
+# manager.start()
+# buffer=manager.BufferHeader(5)
+# buffer.setDelayedWriteBit()
+
+
 class FreeList(object):
 
     def __init__(self, size=20):
+
+        #using shared memory objects using BaseManager from multiprocessing library
+        BaseManager.register('BufferHeader',BufferHeader.BufferHeader)
+        manager=BaseManager()
+        manager.start()
+        
+
         # expecting a free list size of 1 or more
         if(size < 1):
             return
         self.size = size
-        self.freeListHeader = BufferHeader.BufferHeader(0)
+        self.freeListHeader = manager.BufferHeader(0) #added BufferHeader class type to manager and using this so that it can be shared among processes
         prevBlock = self.freeListHeader
         # implememnting the circular free list
         for i in range(1, self.size):
-            block = BufferHeader.BufferHeader(i)
+            block = manager.BufferHeader(i)
             prevBlock.addNextFreeList(block)
             block.addPrevFreeList(prevBlock)
             prevBlock = block
