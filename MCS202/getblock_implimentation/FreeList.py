@@ -22,6 +22,11 @@ class FreeList(object):
         prevBlock.addNextFreeList(self.freeListHeader)
         self.freeListHeader.addPrevFreeList(prevBlock)
 
+    def isEmpty(self):
+        if (self.freeListHeader==None):
+            return True
+        return False
+
     def addToFreeListEnd(self, block):
         if(self.freeListHeader == None):
             self.freeListHeader = block
@@ -47,6 +52,13 @@ class FreeList(object):
         self.freeListHeader.addPrevFreeList(block)
         # only change in add to first from adding to end as it is a circular Queue
         self.freeListHeader = block
+
+    def removeAnyFromFreeList(self):
+        if(self.isEmpty()):
+            return -1
+        block=self.freeListHeader
+        self.removeFromFreeList(block)
+        return block
 
     def removeFromFreeList(self, block):
         # validating if block in free list
