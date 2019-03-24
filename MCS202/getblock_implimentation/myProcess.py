@@ -1,15 +1,14 @@
 import random
 import time
 import multiprocessing
-import HashQueue
-import FreeList
+import BufferDataStructure
 import BufferHeader
 import BufferManagement
 import os
 import random
 
 
-def sudoOperation(buffer):
+def sudoOperation(bufferDataStructure ,buffer):
     """
     0-write operation followed by marking buffer delayed write block and validating block 
     1-work done(disk read is done if buffer was not initially valid), validate buffer 
@@ -19,50 +18,50 @@ def sudoOperation(buffer):
     time.sleep(2) #simulating an operation
     operation=random.randint(0,3)
     if(operation==0):
-        print("delayed Write: ",buffer.getBlockNumber())
-        buffer.setDelayedWriteBit()
-        buffer.setValidBit()
+        print("delayed Write: ",buffer)
+        bufferDataStructure.setDelayedWriteBit(buffer)
+        bufferDataStructure.setValidBit(buffer)
     elif(operation==1):
-        buffer.setValidBit()
+        bufferDataStructure.setValidBit(buffer)
     elif(operation==2):
-        buffer.clearValidBit()
+        bufferDataStructure.clearValidBit(buffer)
     elif(operation==3):
         print("process: ",os.getpid()," is going into long sleep")
         time.sleep(15)
         print("process: ",os.getpid()," woke up")
 
 
-def sudoBRelease(hashQ,freeList,lock,buffer):
+def sudoBRelease(bufferDataStructure,lock,buffer):
     lock.acquire()
-    if(buffer.isValid()):
-        freeList.addToFreeListEnd(buffer)
+    if(bufferDataStructure.isValid(buffer)):
+        bufferDataStructure.addToFreeListEnd(buffer)
     else:
-        freeList.addToFreeListFirst(buffer)
+        bufferDataStructure.addToFreeListFirst(buffer)
 
     
-    buffer.clearLockedBit()
-    print("process: ",os.getpid()," is will unlock buffer  ",buffer.getBlockNumber()," lock status: ",buffer.isLocked())
+    bufferDataStructure.clearLockedBit(buffer)
+    print("process: ",os.getpid()," is will unlock buffer  ",buffer," lock status: ",bufferDataStructure.isLocked(buffer))
     lock.release()
 
 
-def process(hashQ,freeList,lock,maxNoOfBlocks):
+def process(bufferDataStructure,lock,maxNoOfBlocks):
     
     i=0
     while(i<10):
         time.sleep(2)#process will request a random block after every 2 second
         requestedBlock=random.randint(0,maxNoOfBlocks-1)
         print("process : ",os.getpid()," has requested block number : ",requestedBlock)
-        recievedBuffer=BufferManagement.getBlock(requestedBlock,lock,hashQ,freeList)
-        print("process : ",os.getpid(),"recieved buffer: ",recievedBuffer.getBlockNumber())
+        recievedBuffer=BufferManagement.getBlock(requestedBlock,lock,bufferDataStructure)
+        print("process : ",os.getpid(),"recieved buffer: ",recievedBuffer)
 
         print("\n",os.getpid()," hashQ: ")
-        hashQ.printHashQ()
+        bufferDataStructure.printHashQ()
         print("\n",os.getpid()," freeList")
-        freeList.printFreeList()
+        bufferDataStructure.printFreeList()
 
         
-        sudoOperation(recievedBuffer)
-        sudoBRelease(hashQ,freeList,lock,recievedBuffer)
+        sudoOperation(bufferDataStructure ,recievedBuffer)
+        sudoBRelease(bufferDataStructure,lock,recievedBuffer)
         i+=1
 
         

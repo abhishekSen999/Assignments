@@ -3,21 +3,23 @@ import BufferHeader
 import time
 import os
 
-def _writeAsynchronously(lock,buffer):
+def _writeAsynchronously(lock,bufferDataStructure,blockNumber):
     #locking as this is supposed to be a 
     #lock.acquire()
 
-    print("************",buffer.getBlockNumber(),"***************asynchronous writing")
+    print("************",blockNumber,"***************asynchronous writing")
     time.sleep(4)#sleep for 4 seconds to simulate writing to disk
     
-    buffer.clearDelayedWriteBit()
+    bufferDataStructure.clearDelayedWriteBit(blockNumber)
     #lock.release()
-    print("************",buffer.getBlockNumber(),"***************asynchronous writing over")
+    print("************",blockNumber,"***************asynchronous writing over")
+    #adding buffer to first of free list
+    bufferDataStructure.addToFreeListFirst(blockNumber)
     #print("reached",buffer.isDelayedWrite(),"pid ",os.getpid())
 
-def asynchronousWrite(lock,buffer):
+def asynchronousWrite(lock,bufferDataStructure,blockNumber):
     
-    writingProcess=multiprocessing.Process(target=_writeAsynchronously,args=(lock,buffer,))
+    writingProcess=multiprocessing.Process(target=_writeAsynchronously,args=(lock,bufferDataStructure,blockNumber,))
     writingProcess.start()
     
     return 1
