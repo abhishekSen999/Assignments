@@ -16,7 +16,7 @@ import myProcess
 
 lengthOfHashQ=4
 freeListSize=20
-maxNoOfBlocks=50
+maxNoOfBlocks=30
 
 #using shared memory objects using BaseManager from multiprocessing library
 BaseManager.register('BufferDataStructure',BufferDataStructure.BufferDataStructure)

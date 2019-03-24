@@ -8,7 +8,7 @@ import os
 import random
 
 
-def sudoOperation(bufferDataStructure ,buffer):
+def pseudoOperation(bufferDataStructure ,buffer):
     """
     0-write operation followed by marking buffer delayed write block and validating block 
     1-work done(disk read is done if buffer was not initially valid), validate buffer 
@@ -31,7 +31,7 @@ def sudoOperation(bufferDataStructure ,buffer):
         print("process: ",os.getpid()," woke up")
 
 
-def sudoBRelease(bufferDataStructure,lock,buffer):
+def pseudoBRelease(bufferDataStructure,lock,buffer):
     lock.acquire()
     if(bufferDataStructure.isValid(buffer)):
         bufferDataStructure.addToFreeListEnd(buffer)
@@ -60,8 +60,8 @@ def process(bufferDataStructure,lock,maxNoOfBlocks):
         bufferDataStructure.printFreeList()
 
         
-        sudoOperation(bufferDataStructure ,recievedBuffer)
-        sudoBRelease(bufferDataStructure,lock,recievedBuffer)
+        pseudoOperation(bufferDataStructure ,recievedBuffer)
+        pseudoBRelease(bufferDataStructure,lock,recievedBuffer)
         i+=1
 
         
