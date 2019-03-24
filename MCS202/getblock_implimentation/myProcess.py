@@ -11,7 +11,7 @@ import random
 
 def sudoOperation(buffer):
     """
-    0-write operation followed by marking buffer delayed write 
+    0-write operation followed by marking buffer delayed write block and validating block 
     1-work done(disk read is done if buffer was not initially valid), validate buffer 
     2-mark buffer invalid
     3-
@@ -20,6 +20,7 @@ def sudoOperation(buffer):
     operation=random.randint(0,2)
     if(operation==0):
         buffer.setDelayedWriteBit()
+        buffer.setValidBit()
     elif(operation==1):
         buffer.setValidBit()
     elif(operation==2):
