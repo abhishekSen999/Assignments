@@ -5,13 +5,13 @@ import os
 
 def _writeAsynchronously(lock,buffer):
     #locking as this is supposed to be a 
-    # lock.acquire()
+    #lock.acquire()
 
     print("************",buffer.getBlockNumber(),"***************asynchronous writing")
     time.sleep(4)#sleep for 4 seconds to simulate writing to disk
     
     buffer.clearDelayedWriteBit()
-    # lock.release()
+    #lock.release()
     print("************",buffer.getBlockNumber(),"***************asynchronous writing over")
     #print("reached",buffer.isDelayedWrite(),"pid ",os.getpid())
 

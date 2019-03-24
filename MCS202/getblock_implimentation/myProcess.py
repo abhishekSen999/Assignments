@@ -14,17 +14,22 @@ def sudoOperation(buffer):
     0-write operation followed by marking buffer delayed write block and validating block 
     1-work done(disk read is done if buffer was not initially valid), validate buffer 
     2-mark buffer invalid
-    3-
+    3-process went into long sleep while holding the buffer
     """
     time.sleep(2) #simulating an operation
-    operation=random.randint(0,2)
+    operation=random.randint(0,3)
     if(operation==0):
+        print("delayed Write: ",buffer.getBlockNumber())
         buffer.setDelayedWriteBit()
         buffer.setValidBit()
     elif(operation==1):
         buffer.setValidBit()
     elif(operation==2):
         buffer.clearValidBit()
+    elif(operation==3):
+        print("process: ",os.getpid()," is going into long sleep")
+        time.sleep(15)
+        print("process: ",os.getpid()," woke up")
 
 
 def sudoBRelease(hashQ,freeList,lock,buffer):
