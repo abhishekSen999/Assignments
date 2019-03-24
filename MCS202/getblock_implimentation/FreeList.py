@@ -17,27 +17,27 @@ class FreeList(object):
 
     def __init__(self, size=20):
 
-        #using shared memory objects using BaseManager from multiprocessing library
-        BaseManager.register('BufferHeader',BufferHeader.BufferHeader)
-        manager=BaseManager()
-        manager.start()
+       
         
 
         # expecting a free list size of 1 or more
         if(size < 1):
             return
         self.size = size
-        self.freeListHeader = BufferHeader.BufferHeader(-1) #added BufferHeader class type to manager and using this so that it can be shared among processes
+        self.freeListHeader = BufferHeader.BufferHeader(0) #added BufferHeader class type to manager and using this so that it can be shared among processes
         prevBlock = self.freeListHeader
         # implememnting the circular free list
         for i in range(1, self.size):
-            block = BufferHeader.BufferHeader(-1)
+            block = BufferHeader.BufferHeader(i)
             prevBlock.addNextFreeList(block)
             block.addPrevFreeList(prevBlock)
             prevBlock = block
 
         prevBlock.addNextFreeList(self.freeListHeader)
         self.freeListHeader.addPrevFreeList(prevBlock)
+
+    def getHeader(self):
+        return self.freeListHeader
 
     def isEmpty(self):
         if (self.freeListHeader==None):

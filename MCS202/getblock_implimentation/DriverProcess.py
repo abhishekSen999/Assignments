@@ -13,6 +13,11 @@ import os
 import myProcess
 
 
+# def distributionOfBufferInHashQ(hashQ,freeList):
+
+
+
+
 lengthOfHashQ=4
 freeListSize=20
 maxNoOfBlocks=50
@@ -25,6 +30,16 @@ manager.start()
 
 hashQ=manager.HashQueue(lengthOfHashQ)
 freeList=manager.FreeList(freeListSize)
+
+#distributing free buffers in hashQ
+buffer=freeList.getHeader()
+for i in range(freeListSize):
+    hashQ.addBlockToHashQ(buffer)
+    buffer=buffer.getNextFreeList()
+
+print("Initial State of hashQ")
+hashQ.printHashQ()
+
 lock=multiprocessing.Lock()
 p1=multiprocessing.Process(target=myProcess.process,args=(hashQ,freeList,lock,maxNoOfBlocks,))
 p2=multiprocessing.Process(target=myProcess.process,args=(hashQ,freeList,lock,maxNoOfBlocks,))
