@@ -33,7 +33,9 @@ def sudoBRelease(hashQ,freeList,lock,buffer):
     else:
         freeList.addToFreeListFirst(buffer)
 
+    
     buffer.clearLockedBit()
+    print("process: ",os.getpid()," is will unlock buffer  ",buffer.getBlockNumber()," lock status: ",buffer.isLocked())
     lock.release()
 
 

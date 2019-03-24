@@ -12,8 +12,11 @@ def getBlock(blockNumber,lock,hashQ,freeList):
             buffer=hashQ.findBlockInHashQ(blockNumber)
             if(buffer.isLocked()):
 
+
+
                 #for revealing the scenario under which process is going to sleep
                 print("process: ",os.getpid()," is going to sleep as buffer ",buffer.getBlockNumber()," is present in hashQ and is busy")
+                print("process: ",os.getpid()," tries to get ",buffer.getBlockNumber()," lock status: ",buffer.isLocked())
                 
                 lock.release()
                 time.sleep(4)

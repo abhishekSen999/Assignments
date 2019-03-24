@@ -27,11 +27,11 @@ class FreeList(object):
         if(size < 1):
             return
         self.size = size
-        self.freeListHeader = BufferHeader.BufferHeader(0) #added BufferHeader class type to manager and using this so that it can be shared among processes
+        self.freeListHeader = BufferHeader.BufferHeader(-1) #added BufferHeader class type to manager and using this so that it can be shared among processes
         prevBlock = self.freeListHeader
         # implememnting the circular free list
         for i in range(1, self.size):
-            block = BufferHeader.BufferHeader(i)
+            block = BufferHeader.BufferHeader(-1)
             prevBlock.addNextFreeList(block)
             block.addPrevFreeList(prevBlock)
             prevBlock = block
