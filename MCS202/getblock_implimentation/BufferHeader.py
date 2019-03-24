@@ -13,8 +13,8 @@ class BufferHeader(object):
 
         self.hashQ_next=None
         self.hashQ_prev=None
-        self.freeList_next=None
-        self.freeList_prev=None
+        self.freeList_next=self
+        self.freeList_prev=self
 
     
 
@@ -44,9 +44,9 @@ class BufferHeader(object):
     def isLocked(self):
 
         if(self.freeList_next==None and self.freeList_prev==None):
-            return False
-        else:
             return True
+        else:
+            return False
 
 
 

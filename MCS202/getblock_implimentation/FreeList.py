@@ -98,6 +98,7 @@ class FreeList(object):
         # removing links from present block
         block.removeNextFreeList()
         block.removePrevFreeList()
+        print("removed from free list ",block.getBlockNumber())
         return 1
 
     def printFreeList(self):

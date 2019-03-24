@@ -50,13 +50,16 @@ def getBlock(blockNumber,lock,hashQ,freeList):
                 AsynchronousWrite.asynchronousWrite(lock,buffer)
                 continue
             hashQ.removeFromHashQ(buffer)
+
+            print("process: ",os.getpid()," is will replace buffer  ",buffer.getBlockNumber(),"  from freeList with buffer ",blockNumber)
+
             buffer.setBlockNumber(blockNumber)
             buffer.setLockedBit()
             hashQ.addBlockToHashQ(buffer)
             buffer.clearValidBit()#making it invalid
 
-            #for revealing the scenario under which process is going to sleep
-            print("process: ",os.getpid()," is will get buffer  ",buffer.getBlockNumber(),"  from freeList")
+            #for revealing the scenario under which process is returning
+            # print("process: ",os.getpid()," is will get buffer  ",buffer.getBlockNumber(),"  from freeList")
 
             lock.release()
             return buffer

@@ -55,9 +55,9 @@ def process(hashQ,freeList,lock,maxNoOfBlocks):
         recievedBuffer=BufferManagement.getBlock(requestedBlock,lock,hashQ,freeList)
         print("process : ",os.getpid(),"recieved buffer: ",recievedBuffer.getBlockNumber())
 
-        print("\nhashQ: ")
+        print("\n",os.getpid()," hashQ: ")
         hashQ.printHashQ()
-        print("\nfreeList")
+        print("\n",os.getpid()," freeList")
         freeList.printFreeList()
 
         

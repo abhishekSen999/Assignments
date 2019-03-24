@@ -46,14 +46,23 @@ class HashQueue(object):
 
     def removeFromHashQ(self,block):
 
+        
         if(block.getNextHashQ()==None and block.getPrevHashQ()==None):#block not in hashQ(starting cases)
+            print("line 50 hashq")
             return 1
         if(block.getNextHashQ()==block):#only one element in hashQ
+            print("line 53 hashq")
+            block.removeNextHashQ()
+            block.removePrevHashQ()
             self.hashQ[block.getBlockNumber()%self.size]=None
             return 1
-        
+        print ("here")
+        if(self.hashQ[block.getBlockNumber()%self.size].getBlockNumber()==block.getBlockNumber()):#when the element to be removed is first element of the queue
+            print("removing first element from hashQ")
+            self.hashQ[block.getBlockNumber()%self.size]=block.getNextHashQ()
         block.getPrevHashQ().addNextHashQ(block.getNextHashQ())
         block.getNextHashQ().addPrevHashQ(block.getPrevHashQ())
+
 
     def printHashQ(self):
         for i in range(self.size):
@@ -69,7 +78,17 @@ class HashQueue(object):
                     break
             
             print("\n")
-            
+
+#code for block manipulation through this pool
+    def 
+
+
+
+
+
+
+
+
 
 
 # if __name__=="__main__":
