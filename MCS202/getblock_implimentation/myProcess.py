@@ -39,7 +39,8 @@ def sudoBRelease(hashQ,freeList,lock,buffer):
 
 def process(hashQ,freeList,lock,maxNoOfBlocks):
     
-    while(True):
+    i=0
+    while(i<10):
         time.sleep(2)#process will request a random block after every 2 second
         requestedBlock=random.randint(0,maxNoOfBlocks-1)
         print("process : ",os.getpid()," has requested block number : ",requestedBlock)
@@ -53,6 +54,8 @@ def process(hashQ,freeList,lock,maxNoOfBlocks):
 
         
         sudoOperation(recievedBuffer)
+        sudoBRelease(hashQ,freeList,lock,recievedBuffer)
+        i+=1
 
         
 

@@ -1,0 +1,25 @@
+process :  29775  has requested block number :  26
+process:  29775  is will get buffer from freeList
+process :  29775 recieved buffer:  26
+
+hashQ: 
+
+freeList
+process :  29775  has requested block number :  37
+process:  29775  came across block number:  39 marked as delayed write so is executing asynchronous write
+process :  29778  has requested block number :  39
+process:  29778  is will get buffer from freeList
+process :  29778 recieved buffer:  39
+
+hashQ: 
+
+freeList
+process :  29778  has requested block number :  7
+process:  29778  is will get buffer from freeList
+process :  29778 recieved buffer:  7
+
+hashQ: 
+
+freeList
+process :  29778  has requested block number :  17
+process:  29778  came across block number:  45 marked as delayed write so is executing asynchronous write

@@ -13,7 +13,7 @@ def getBlock(blockNumber,lock,hashQ,freeList):
             if(buffer.isLocked()):
 
                 #for revealing the scenario under which process is going to sleep
-                print("process: ",os.getpid()," is going to sleep as buffer is present in hashQ and is busy")
+                print("process: ",os.getpid()," is going to sleep as buffer ",buffer.getBlockNumber()," is present in hashQ and is busy")
                 
                 lock.release()
                 time.sleep(4)
@@ -22,7 +22,7 @@ def getBlock(blockNumber,lock,hashQ,freeList):
             freeList.removeFromFreeList(buffer)
 
             #for revealing the scenario under which process is going to sleep
-            print("process: ",os.getpid()," is will get buffer from hashQ")
+            print("process: ",os.getpid(),"  will get buffer  ",buffer.getBlockNumber()," from hashQ")
 
             lock.release()
             return buffer
@@ -52,7 +52,7 @@ def getBlock(blockNumber,lock,hashQ,freeList):
             buffer.clearValidBit()#making it invalid
 
             #for revealing the scenario under which process is going to sleep
-            print("process: ",os.getpid()," is will get buffer from freeList")
+            print("process: ",os.getpid()," is will get buffer  ",buffer.getBlockNumber(),"  from freeList")
 
             lock.release()
             return buffer
