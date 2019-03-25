@@ -17,12 +17,12 @@ class BufferDataStructure(object):
             return
         self.freeListSize = freeListSize
         #adding BufferHeader class type to manager and using this so that it can be shared among processes
-        self.freeListHeader = BufferHeader.BufferHeader(0)
+        self.freeListHeader = BufferHeader.BufferHeader(-1)
         prevBlock = self.freeListHeader
 
         # implementing the (circular doubly linked) free list
         for i in range(1, self.freeListSize):
-            block = BufferHeader.BufferHeader(i)
+            block = BufferHeader.BufferHeader(-1)
             prevBlock.addNextFreeList(block)
             block.addPrevFreeList(prevBlock)
             prevBlock = block
@@ -223,7 +223,7 @@ class BufferDataStructure(object):
     def removeFromHashQ(self,blockNumber):
         block=self.findBlockInHashQ(blockNumber)
         if(block==None):
-            block=self.findInFreeList(blockNumber)
+           return -1
 
 
      
