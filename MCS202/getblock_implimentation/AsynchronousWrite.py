@@ -7,13 +7,14 @@ def _writeAsynchronously(lock,bufferDataStructure,blockNumber):
     #locking as this is supposed to be a 
     #lock.acquire()
 
-    print("************",blockNumber,"***************asynchronous writing")
-    time.sleep(4)#sleep for 4 seconds to simulate writing to disk
+    print("************",blockNumber,"***************Asynchronous Writing")
+    time.sleep(4)   #sleep for 4 seconds to simulate writing to disk
     
     bufferDataStructure.clearDelayedWriteBit(blockNumber)
     #lock.release()
-    print("************",blockNumber,"***************asynchronous writing over")
-    #adding buffer to first of free list
+    print("************",blockNumber,"***************Asynchronous Writing over")
+   
+    #adding buffer to head of free list, to follow the LRU algorithm
     bufferDataStructure.addToFreeListFirst(blockNumber)
     #print("reached",buffer.isDelayedWrite(),"pid ",os.getpid())
 

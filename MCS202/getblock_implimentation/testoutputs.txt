@@ -1,537 +1,753 @@
-process :  1889  has requested block number :  29
-process :  1888  has requested block number :  5
-process :  1890  has requested block number :  40
-process:  1889  is will get buffer   29   from freeList
-process :  1889 recieved buffer:  29
+Buffer  0  added to the hash queue
+Buffer  1  added to the hash queue
+Buffer  2  added to the hash queue
+Buffer  3  added to the hash queue
+Buffer  4  added to the hash queue
+Buffer  5  added to the hash queue
+Buffer  6  added to the hash queue
+Buffer  7  added to the hash queue
+Buffer  8  added to the hash queue
+Buffer  9  added to the hash queue
+Buffer  10  added to the hash queue
+Buffer  11  added to the hash queue
+Buffer  12  added to the hash queue
+Buffer  13  added to the hash queue
+Buffer  14  added to the hash queue
+Buffer  15  added to the hash queue
+Buffer  16  added to the hash queue
+Buffer  17  added to the hash queue
+Buffer  18  added to the hash queue
+Buffer  19  added to the hash queue
 
-hashQ: 
-empty
+Initial State of hashQ
+<- 0 -><- 4 -><- 8 -><- 12 -><- 16 ->
 
-<- 29 ->
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
-empty
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-empty
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 ->
 
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 ->
-process:  1888  is will get buffer   5   from freeList
-process :  1888 recieved buffer:  5
+Initial State of freeList
+<- 0 -><- 1 -><- 2 -><- 3 -><- 4 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 11 -><- 12 -><- 13 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 ->
 
-hashQ: 
-empty
+---------------------------------------------------------
+---------------------------------------------------------
 
-<- 29 -><- 5 ->
+Process  26236  has requested block number  4
+---------------------------------------------------------
+Process  26235  has requested block number  23
+---------------------------------------------------------
 
-empty
+---------------------------------------------------------
+Process  26237  has requested block number  19
+---------------------------------------------------------
+Buffer  4  removed from free list 
+Process  26236  will get buffer  4  from hashQ
 
-empty
+Process  26236 : RECIEVED BUFFER  4
 
+ 26236  HashQ : 
+<- 0 -><- 4 -><- 8 -><- 12 -><- 16 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 ->
-process:  1890  is will get buffer   40   from freeList
-process :  1890 recieved buffer:  40
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
-hashQ: 
-<- 40 ->
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-<- 29 -><- 5 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 ->
 
-empty
 
-empty
+ 26236  FreeList :
+<- 0 -><- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 11 -><- 12 -><- 13 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 ->
+Replace buffer  0  in freeList, with buffer  23
+Buffer  23  added to the hash queue
+Buffer  23  removed from free list 
 
+Process  26235 : RECIEVED BUFFER  23
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 ->
-process:  1889  is going into long sleep
-process:  1888  is going into long sleep
-process:  1890  is going into long sleep
-process:  1889  woke up
-process:  1889  is will unlock buffer   29  lock status:  False
-process:  1888  woke up
-process:  1888  is will unlock buffer   5  lock status:  False
-process:  1890  woke up
-process:  1890  is will unlock buffer   40  lock status:  False
-process :  1889  has requested block number :  29
-process:  1889   will get buffer   29  from hashQ
-process :  1889 recieved buffer:  29
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-hashQ: 
-<- 40 ->
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
-<- 29 -><- 5 ->
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-empty
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-empty
 
+ 26235  FreeList :
+<- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 11 -><- 12 -><- 13 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 ->
+Buffer  19  removed from free list 
+Process  26237  will get buffer  19  from hashQ
 
-freeList
-<- 40 -><- 5 -><- 29 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 ->
-process :  1888  has requested block number :  7
-process:  1888  is will get buffer   7   from freeList
-process :  1888 recieved buffer:  7
+Process  26237 : RECIEVED BUFFER  19
 
-hashQ: 
-<- 40 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-<- 29 -><- 5 ->
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
-empty
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-<- 7 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
 
-freeList
-<- 5 -><- 29 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 ->
-process :  1890  has requested block number :  19
-process:  1890  is will get buffer   19   from freeList
-process :  1890 recieved buffer:  19
+ 26237  FreeList :
+<- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 11 -><- 12 -><- 13 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 ->
+Delayed Write:  4
+Process  26236  has unlocked buffer  4             Lock status: False
+Delayed Write:  23
+Process  26235  has unlocked buffer  23             Lock status: False
+Process  26237  has unlocked buffer  19             Lock status: False
 
-hashQ: 
-<- 40 ->
+---------------------------------------------------------
+Process  26236  has requested block number  13
+---------------------------------------------------------
+Buffer  13  removed from free list 
+Process  26236  will get buffer  13  from hashQ
 
-<- 29 -><- 5 ->
+Process  26236 : RECIEVED BUFFER  13
 
-empty
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-<- 7 -><- 19 ->
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-freeList
-<- 29 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 ->
-process:  1889  is will unlock buffer   29  lock status:  False
-process:  1888  is will unlock buffer   7  lock status:  False
-process:  1890  is will unlock buffer   19  lock status:  False
-process :  1889  has requested block number :  24
-process:  1889  is will get buffer   24   from freeList
-process :  1889 recieved buffer:  24
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-hashQ: 
-<- 40 -><- 24 ->
 
-<- 29 -><- 5 ->
+ 26236  FreeList :
+<- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 11 -><- 12 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 4 -><- 23 -><- 19 ->
 
-empty
+---------------------------------------------------------
+Process  26235  has requested block number  23
+---------------------------------------------------------
+Buffer  23  removed from free list 
+Process  26235  will get buffer  23  from hashQ
 
-<- 7 -><- 19 ->
+Process  26235 : RECIEVED BUFFER  23
 
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-freeList
-<- 7 -><- 29 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 ->
-process :  1888  has requested block number :  25
-process:  1888  is will get buffer   25   from freeList
-process :  1888 recieved buffer:  25
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
-hashQ: 
-<- 40 -><- 24 ->
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-<- 29 -><- 5 -><- 25 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-empty
 
-<- 7 -><- 19 ->
+ 26235  FreeList :
+<- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 11 -><- 12 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 4 -><- 19 ->
 
+---------------------------------------------------------
+Process  26237  has requested block number  4
+---------------------------------------------------------
+Buffer  4  removed from free list 
+Process  26237  will get buffer  4  from hashQ
 
-freeList
-<- 29 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 ->
-process :  1890  has requested block number :  14
-process:  1890  is will get buffer   14   from freeList
-process :  1890 recieved buffer:  14
+Process  26237 : RECIEVED BUFFER  4
 
-hashQ: 
-<- 40 -><- 24 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-<- 29 -><- 5 -><- 25 ->
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
-<- 14 ->
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-<- 7 -><- 19 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 ->
-process:  1889  is going into long sleep
-process:  1888  is will unlock buffer   25  lock status:  False
-process:  1890  is will unlock buffer   14  lock status:  False
-process :  1888  has requested block number :  16
-process:  1888  is will get buffer   16   from freeList
-process :  1888 recieved buffer:  16
+ 26237  FreeList :
+<- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 11 -><- 12 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 ->
+Process  26236  is going into long sleep
+Process  26235  is going into long sleep
+Process  26237  is going into long sleep
+Process  26236  woke up
+Process  26236  has unlocked buffer  13             Lock status: False
+Process  26235  woke up
+Process  26235  has unlocked buffer  23             Lock status: False
+Process  26237  woke up
+Process  26237  has unlocked buffer  4             Lock status: False
 
-hashQ: 
-<- 40 -><- 24 -><- 16 ->
+---------------------------------------------------------
+Process  26236  has requested block number  11
+---------------------------------------------------------
+Buffer  11  removed from free list 
+Process  26236  will get buffer  11  from hashQ
 
-<- 29 -><- 5 -><- 25 ->
+Process  26236 : RECIEVED BUFFER  11
 
-<- 14 ->
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-<- 7 -><- 19 ->
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-freeList
-<- 25 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 ->
-process :  1890  has requested block number :  28
-process:  1890  is will get buffer   28   from freeList
-process :  1890 recieved buffer:  28
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 ->
+---------------------------------------------------------
 
-<- 29 -><- 5 -><- 25 ->
+Process  26235  has requested block number  12
+---------------------------------------------------------
 
-<- 14 ->
+ 26236  FreeList :
+<- 13 -><- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 12 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 ->
+Buffer  12  removed from free list 
+Process  26235  will get buffer  12  from hashQ
 
-<- 7 -><- 19 ->
+Process  26235 : RECIEVED BUFFER  12
 
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 ->
-delayed Write:  16
-process:  1888  is will unlock buffer   16  lock status:  False
-delayed Write:  28
-process:  1890  is will unlock buffer   28  lock status:  False
-process :  1888  has requested block number :  44
-process:  1888  is will get buffer   44   from freeList
-process :  1888 recieved buffer:  44
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 ->
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-<- 29 -><- 5 -><- 25 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-<- 14 ->
 
-<- 7 -><- 19 ->
+ 26235  FreeList :
+<- 13 -><- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 9 -><- 10 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 ->
 
+---------------------------------------------------------
+Process  26237  has requested block number  9
+---------------------------------------------------------
+Buffer  9  removed from free list 
+Process  26237  will get buffer  9  from hashQ
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 ->
-process :  1890  has requested block number :  3
-process:  1890  is will get buffer   3   from freeList
-process :  1890 recieved buffer:  3
+Process  26237 : RECIEVED BUFFER  9
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-<- 29 -><- 5 -><- 25 ->
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
-<- 14 ->
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-<- 7 -><- 19 -><- 3 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 ->
-delayed Write:  44
-process:  1888  is will unlock buffer   44  lock status:  False
-process:  1890  is going into long sleep
-process :  1888  has requested block number :  31
-process:  1888  is will get buffer   31   from freeList
-process :  1888 recieved buffer:  31
+ 26237  FreeList :
+<- 13 -><- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 10 -><- 14 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 ->
+Process  26236  is going into long sleep
+Delayed Write:  12
+Process  26235  has unlocked buffer  12             Lock status: False
+Process  26237  is going into long sleep
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 ->
+---------------------------------------------------------
+Process  26235  has requested block number  14
+---------------------------------------------------------
+Buffer  14  removed from free list 
+Process  26235  will get buffer  14  from hashQ
 
-<- 29 -><- 5 -><- 25 ->
+Process  26235 : RECIEVED BUFFER  14
 
-<- 14 ->
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+<- 1 -><- 5 -><- 9 -><- 13 -><- 17 ->
 
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 ->
-process:  1888  is will unlock buffer   31  lock status:  False
-process :  1888  has requested block number :  40
-process:  1888   will get buffer   40  from hashQ
-process :  1888 recieved buffer:  40
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 ->
 
-<- 29 -><- 5 -><- 25 ->
+ 26235  FreeList :
+<- 13 -><- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 -><- 12 ->
+Process  26235  is going into long sleep
+Process  26236  woke up
+Process  26236  has unlocked buffer  11             Lock status: False
+Process  26237  woke up
+Process  26237  has unlocked buffer  9             Lock status: False
 
-<- 14 ->
+---------------------------------------------------------
+Process  26236  has requested block number  22
+---------------------------------------------------------
+Replace buffer  9  in freeList, with buffer  22
+Buffer  22  added to the hash queue
+Buffer  22  removed from free list 
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+Process  26236 : RECIEVED BUFFER  22
 
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 ->
-process:  1889  woke up
-process:  1889  is will unlock buffer   24  lock status:  False
-process:  1888  is will unlock buffer   40  lock status:  False
-process :  1889  has requested block number :  10
-process:  1889  is will get buffer   10   from freeList
-process :  1889 recieved buffer:  10
+<- 1 -><- 5 -><- 13 -><- 17 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 ->
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 -><- 22 ->
 
-<- 29 -><- 5 -><- 25 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-<- 14 -><- 10 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+ 26236  FreeList :
+<- 11 -><- 13 -><- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 7 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 -><- 12 ->
 
+---------------------------------------------------------
+Process  26237  has requested block number  7
+---------------------------------------------------------
+Buffer  7  removed from free list 
+Process  26237  will get buffer  7  from hashQ
 
-freeList
-<- 24 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 ->
-process :  1888  has requested block number :  46
-process:  1888  is will get buffer   46   from freeList
-process :  1888 recieved buffer:  46
+Process  26237 : RECIEVED BUFFER  7
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 ->
 
-<- 29 -><- 5 -><- 25 ->
+<- 1 -><- 5 -><- 13 -><- 17 ->
 
-<- 14 -><- 10 -><- 46 ->
+<- 2 -><- 6 -><- 10 -><- 14 -><- 18 -><- 22 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 ->
-process:  1889  is will unlock buffer   10  lock status:  False
-process:  1888  is will unlock buffer   46  lock status:  False
-process :  1889  has requested block number :  45
-process:  1889  is will get buffer   45   from freeList
-process :  1889 recieved buffer:  45
+ 26237  FreeList :
+<- 11 -><- 13 -><- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 -><- 12 ->
+Process  26236  is going into long sleep
+Process  26235  woke up
+Process  26235  has unlocked buffer  14             Lock status: False
+Process  26237  is going into long sleep
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 ->
+---------------------------------------------------------
+Process  26235  has requested block number  0
+---------------------------------------------------------
+Replace buffer  14  in freeList, with buffer  0
+Buffer  0  added to the hash queue
+Buffer  0  removed from free list 
 
-<- 29 -><- 5 -><- 25 -><- 45 ->
+Process  26235 : RECIEVED BUFFER  0
 
-<- 14 -><- 10 -><- 46 ->
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+<- 1 -><- 5 -><- 13 -><- 17 ->
 
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 ->
-process :  1888  has requested block number :  25
-process:  1888   will get buffer   25  from hashQ
-process :  1888 recieved buffer:  25
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 ->
 
-<- 29 -><- 5 -><- 25 -><- 45 ->
+ 26235  FreeList :
+<- 11 -><- 13 -><- 1 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 -><- 12 ->
+Process  26235  has unlocked buffer  0             Lock status: False
 
-<- 14 -><- 10 -><- 46 ->
+---------------------------------------------------------
+Process  26235  has requested block number  22
+---------------------------------------------------------
+Process  26235  is going to sleep as buffer  22  is present in hashQ and is busy
+Process  26235  is going to sleep as buffer  22  is present in hashQ and is busy
+Process  26235  is going to sleep as buffer  22  is present in hashQ and is busy
+Process  26236  woke up
+Process  26236  has unlocked buffer  22             Lock status: False
+Process  26237  woke up
+Process  26237  has unlocked buffer  7             Lock status: False
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+---------------------------------------------------------
+Process  26236  has requested block number  1
+---------------------------------------------------------
+Buffer  1  removed from free list 
+Process  26236  will get buffer  1  from hashQ
 
+Process  26236 : RECIEVED BUFFER  1
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 ->
-process:  1889  is will unlock buffer   45  lock status:  False
-process:  1890  woke up
-process:  1890  is will unlock buffer   3  lock status:  False
-process:  1888  is going into long sleep
-process :  1889  has requested block number :  36
-process:  1889  is will get buffer   36   from freeList
-process :  1889 recieved buffer:  36
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 ->
+<- 1 -><- 5 -><- 13 -><- 17 ->
 
-<- 29 -><- 5 -><- 25 -><- 45 ->
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 ->
 
-<- 14 -><- 10 -><- 46 ->
+<- 3 -><- 7 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
 
+ 26236  FreeList :
+<- 7 -><- 22 -><- 11 -><- 13 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 -><- 12 -><- 0 ->
 
-freeList
-<- 45 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 ->
-process :  1890  has requested block number :  37
-process:  1890  is will get buffer   37   from freeList
-process :  1890 recieved buffer:  37
+---------------------------------------------------------
+Process  26237  has requested block number  25
+---------------------------------------------------------
+Replace buffer  7  in freeList, with buffer  25
+Buffer  25  added to the hash queue
+Buffer  25  removed from free list 
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 ->
+Process  26237 : RECIEVED BUFFER  25
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
 
-<- 14 -><- 10 -><- 46 ->
+<- 1 -><- 5 -><- 13 -><- 17 -><- 25 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 ->
 
+<- 3 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 ->
-process:  1889  is will unlock buffer   36  lock status:  False
-delayed Write:  37
-process:  1890  is will unlock buffer   37  lock status:  False
-process :  1889  has requested block number :  20
-process:  1889  is will get buffer   20   from freeList
-process :  1889 recieved buffer:  20
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
+ 26237  FreeList :
+<- 22 -><- 11 -><- 13 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 -><- 12 -><- 0 ->
+Buffer  22  removed from free list 
+Process  26235  will get buffer  22  from hashQ
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 ->
+Process  26235 : RECIEVED BUFFER  22
 
-<- 14 -><- 10 -><- 46 ->
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+<- 1 -><- 5 -><- 13 -><- 17 -><- 25 ->
 
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 ->
-process :  1890  has requested block number :  9
-process:  1890  is will get buffer   9   from freeList
-process :  1890 recieved buffer:  9
+<- 3 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 -><- 9 ->
+ 26235  FreeList :
+<- 11 -><- 13 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 -><- 12 -><- 0 ->
+Delayed Write:  1
+Process  26236  has unlocked buffer  1             Lock status: False
+Process  26237  has unlocked buffer  25             Lock status: False
+Process  26235  is going into long sleep
 
-<- 14 -><- 10 -><- 46 ->
+---------------------------------------------------------
+Process  26236  has requested block number  29
+---------------------------------------------------------
+Replace buffer  25  in freeList, with buffer  29
+Buffer  29  added to the hash queue
+Buffer  29  removed from free list 
 
-<- 7 -><- 19 -><- 3 -><- 31 ->
+Process  26236 : RECIEVED BUFFER  29
 
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 ->
-process:  1889  is will unlock buffer   20  lock status:  False
-delayed Write:  9
-process:  1890  is will unlock buffer   9  lock status:  False
-process :  1889  has requested block number :  23
-process:  1889  is will get buffer   23   from freeList
-process :  1889 recieved buffer:  23
+<- 1 -><- 5 -><- 13 -><- 17 -><- 29 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 ->
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 -><- 9 ->
+<- 3 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
-<- 14 -><- 10 -><- 46 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 -><- 23 ->
+ 26236  FreeList :
+<- 11 -><- 13 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 23 -><- 4 -><- 12 -><- 0 -><- 1 ->
 
+---------------------------------------------------------
+Process  26237  has requested block number  23
+---------------------------------------------------------
+Buffer  23  removed from free list 
+Process  26237  will get buffer  23  from hashQ
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 -><- 9 ->
-process :  1890  has requested block number :  27
-process:  1890  is will get buffer   27   from freeList
-process :  1890 recieved buffer:  27
+Process  26237 : RECIEVED BUFFER  23
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 -><- 9 ->
+<- 1 -><- 5 -><- 13 -><- 17 -><- 29 ->
 
-<- 14 -><- 10 -><- 46 ->
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 -><- 23 -><- 27 ->
+<- 3 -><- 11 -><- 15 -><- 19 -><- 23 ->
 
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 -><- 9 ->
-delayed Write:  23
-process:  1889  is will unlock buffer   23  lock status:  False
-process:  1890  is will unlock buffer   27  lock status:  False
-process :  1889  has requested block number :  13
-process:  1889  is will get buffer   13   from freeList
-process :  1889 recieved buffer:  13
+ 26237  FreeList :
+<- 11 -><- 13 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 4 -><- 12 -><- 0 -><- 1 ->
+Process  26236  has unlocked buffer  29             Lock status: False
+Process  26237  has unlocked buffer  23             Lock status: False
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
+---------------------------------------------------------
+Process  26236  has requested block number  28
+---------------------------------------------------------
+Buffer  23  removed from free list 
+Process  26236  came across free buffer  23  but marked as delayed write so is executing asynchronous write
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 -><- 9 -><- 13 ->
+---------------------------------------------------------
+Process  26237  has requested block number  14
+---------------------------------------------------------
+Replace buffer  11  in freeList, with buffer  14
+Buffer  14  added to the hash queue
+Buffer  14  removed from free list 
 
-<- 14 -><- 10 -><- 46 ->
+Process  26237 : RECIEVED BUFFER  14
 
-<- 7 -><- 19 -><- 3 -><- 31 -><- 23 -><- 27 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
 
+<- 1 -><- 5 -><- 13 -><- 17 -><- 29 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 -><- 9 -><- 23 ->
-process :  1890  has requested block number :  44
-process:  1890   will get buffer   44  from hashQ
-process :  1890 recieved buffer:  44
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 -><- 14 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
+<- 3 -><- 15 -><- 19 -><- 23 ->
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 -><- 9 -><- 13 ->
 
-<- 14 -><- 10 -><- 46 ->
+ 26237  FreeList :
+<- 13 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 4 -><- 12 -><- 0 -><- 1 -><- 29 ->
+Replace buffer  13  in freeList, with buffer  28
+Buffer  28  added to the hash queue
+Buffer  28  removed from free list 
 
-<- 7 -><- 19 -><- 3 -><- 31 -><- 23 -><- 27 ->
+Process  26236 : RECIEVED BUFFER  28
+************ 23 ***************Asynchronous Writing
 
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 -><- 28 ->
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 -><- 9 -><- 23 ->
-delayed Write:  13
-process:  1889  is will unlock buffer   13  lock status:  False
-process:  1888  woke up
-process:  1888  is will unlock buffer   25  lock status:  False
-process:  1890  is going into long sleep
-process :  1889  has requested block number :  10
-process:  1889   will get buffer   10  from hashQ
-process :  1889 recieved buffer:  10
+<- 1 -><- 5 -><- 17 -><- 29 ->
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 -><- 14 ->
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 -><- 9 -><- 13 ->
+<- 3 -><- 15 -><- 19 -><- 23 ->
 
-<- 14 -><- 10 -><- 46 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 -><- 23 -><- 27 ->
+ 26236  FreeList :
+<- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 4 -><- 12 -><- 0 -><- 1 -><- 29 ->
+Process  26237  has unlocked buffer  14             Lock status: False
+Process  26236  is going into long sleep
 
+---------------------------------------------------------
+Process  26237  has requested block number  23
+---------------------------------------------------------
+Process  26237  will get buffer  23  from hashQ
 
-freeList
-<- 25 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 -><- 9 -><- 23 -><- 13 ->
-process :  1888  has requested block number :  22
-process:  1888  is will get buffer   22   from freeList
-process :  1888 recieved buffer:  22
+Process  26237 : RECIEVED BUFFER  23
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 -><- 28 ->
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 -><- 9 -><- 13 ->
+<- 1 -><- 5 -><- 17 -><- 29 ->
 
-<- 14 -><- 10 -><- 46 -><- 22 ->
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 -><- 14 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 -><- 23 -><- 27 ->
+<- 3 -><- 15 -><- 19 -><- 23 ->
 
 
-freeList
-<- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 -><- 9 -><- 23 -><- 13 ->
-process:  1889  is going into long sleep
-process:  1888  is going into long sleep
-process:  1890  woke up
-process:  1890  is will unlock buffer   44  lock status:  False
-process :  1890  has requested block number :  29
-process:  1890   will get buffer   29  from hashQ
-process :  1890 recieved buffer:  29
+ 26237  FreeList :
+************ 23 ***************Asynchronous Writing over
+<- 14 -><- 2 -><- 3 -><- 5 -><- 6 -><- 8 -><- 10 -><- 15 -><- 16 -><- 17 -><- 18 -><- 19 -><- 4 -><- 12 -><- 0 -><- 1 -><- 29 ->
+Delayed Write:  23
+Process  26237  has unlocked buffer  23             Lock status: False
 
-hashQ: 
-<- 40 -><- 24 -><- 16 -><- 28 -><- 44 -><- 36 -><- 20 ->
+---------------------------------------------------------
+Process  26237  has requested block number  1
+---------------------------------------------------------
+Buffer  1  removed from free list 
+Process  26237  will get buffer  1  from hashQ
 
-<- 29 -><- 5 -><- 25 -><- 45 -><- 37 -><- 9 -><- 13 ->
+Process  26237 : RECIEVED BUFFER  1
 
-<- 14 -><- 10 -><- 46 -><- 22 ->
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 -><- 28 ->
 
-<- 7 -><- 19 -><- 3 -><- 31 -><- 23 -><- 27 ->
+<- 1 -><- 5 -><- 17 -><- 29 ->
 
+<- 2 -><- 6 -><- 10 -><- 18 -><- 22 -><- 14 ->
 
-freeList
-<- 44 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- -1 -><- 29 -><- 16 -><- 28 -><- 44 -><- 31 -><- 10 -><- 46 -><- 37 -><- 9 -><- 23 -><- 13 ->
-process:  1889  woke up
-process:  1889  is will unlock buffer   10  lock status:  False
-process:  1888  woke up
-process:  1888  is will unlock buffer   22  lock status:  False
-delayed Write:  29
-process:  1890  is will unlock buffer   29  lock status:  False
-end
+<- 3 -><- 15 -><- 19 -><- 23 ->
+
+
+ 26237  FreeList :
+<- 23 ->
+Process  26235  woke up
+Process  26235  has unlocked buffer  22             Lock status: False
+Delayed Write:  1
+Process  26237  has unlocked buffer  1             Lock status: False
+
+---------------------------------------------------------
+Process  26235  has requested block number  11
+---------------------------------------------------------
+Replace buffer  22  in freeList, with buffer  11
+Buffer  11  added to the hash queue
+Buffer  11  removed from free list 
+
+Process  26235 : RECIEVED BUFFER  11
+
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 -><- 28 ->
+
+<- 1 -><- 5 -><- 17 -><- 29 ->
+
+<- 2 -><- 6 -><- 10 -><- 18 -><- 14 ->
+
+<- 3 -><- 15 -><- 19 -><- 23 -><- 11 ->
+
+
+ 26235  FreeList :
+<- 23 -><- 1 ->
+
+---------------------------------------------------------
+Process  26237  has requested block number  13
+---------------------------------------------------------
+Buffer  23  removed from free list 
+Process  26237  came across free buffer  23  but marked as delayed write so is executing asynchronous write
+Process  26237  came across free buffer  1  but marked as delayed write so is executing asynchronous write
+************ 23 ***************Asynchronous Writing
+Process  26237  is going to sleep as freeList is empty
+************ 1 ***************Asynchronous Writing
+Process  26235  is going into long sleep
+Process  26237  is going to sleep as freeList is empty
+************ 23 ***************Asynchronous Writing over
+************ 1 ***************Asynchronous Writing over
+Process  26236  woke up
+Process  26236  has unlocked buffer  28             Lock status: False
+
+---------------------------------------------------------
+Process  26236  has requested block number  26
+---------------------------------------------------------
+Replace buffer  28  in freeList, with buffer  26
+Buffer  26  added to the hash queue
+Buffer  26  removed from free list 
+
+Process  26236 : RECIEVED BUFFER  26
+
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
+
+<- 1 -><- 5 -><- 17 -><- 29 ->
+
+<- 2 -><- 6 -><- 10 -><- 18 -><- 14 -><- 26 ->
+
+<- 3 -><- 15 -><- 19 -><- 23 -><- 11 ->
+
+
+ 26236  FreeList :
+<- 1 -><- 23 ->
+Replace buffer  1  in freeList, with buffer  13
+Buffer  13  added to the hash queue
+Buffer  13  removed from free list 
+
+Process  26237 : RECIEVED BUFFER  13
+
+ 26237  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
+
+<- 5 -><- 17 -><- 29 -><- 13 ->
+
+<- 2 -><- 6 -><- 10 -><- 18 -><- 14 -><- 26 ->
+
+<- 3 -><- 15 -><- 19 -><- 23 -><- 11 ->
+
+
+ 26237  FreeList :
+<- 23 ->
+Process  26236  has unlocked buffer  26             Lock status: False
+Delayed Write:  13
+Process  26237  has unlocked buffer  13             Lock status: False
+
+---------------------------------------------------------
+Process  26236  has requested block number  7
+---------------------------------------------------------
+Replace buffer  23  in freeList, with buffer  7
+Buffer  7  added to the hash queue
+Buffer  7  removed from free list 
+
+Process  26236 : RECIEVED BUFFER  7
+
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
+
+<- 5 -><- 17 -><- 29 -><- 13 ->
+
+<- 2 -><- 6 -><- 10 -><- 18 -><- 14 -><- 26 ->
+
+<- 3 -><- 15 -><- 19 -><- 11 -><- 7 ->
+
+
+ 26236  FreeList :
+<- 26 -><- 13 ->
+Process  26236  has unlocked buffer  7             Lock status: False
+
+---------------------------------------------------------
+Process  26236  has requested block number  21
+---------------------------------------------------------
+Replace buffer  7  in freeList, with buffer  21
+Buffer  21  added to the hash queue
+Buffer  21  removed from free list 
+
+Process  26236 : RECIEVED BUFFER  21
+
+ 26236  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
+
+<- 5 -><- 17 -><- 29 -><- 13 -><- 21 ->
+
+<- 2 -><- 6 -><- 10 -><- 18 -><- 14 -><- 26 ->
+
+<- 3 -><- 15 -><- 19 -><- 11 ->
+
+
+ 26236  FreeList :
+<- 26 -><- 13 ->
+Process  26235  woke up
+Process  26235  has unlocked buffer  11             Lock status: False
+Process  26236  has unlocked buffer  21             Lock status: False
+
+---------------------------------------------------------
+Process  26235  has requested block number  1
+---------------------------------------------------------
+Replace buffer  21  in freeList, with buffer  1
+Buffer  1  added to the hash queue
+Buffer  1  removed from free list 
+
+Process  26235 : RECIEVED BUFFER  1
+
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
+
+<- 5 -><- 17 -><- 29 -><- 13 -><- 1 ->
+
+<- 2 -><- 6 -><- 10 -><- 18 -><- 14 -><- 26 ->
+
+<- 3 -><- 15 -><- 19 -><- 11 ->
+
+
+ 26235  FreeList :
+<- 11 -><- 26 -><- 13 ->
+Process  26235  has unlocked buffer  1             Lock status: False
+
+---------------------------------------------------------
+Process  26235  has requested block number  19
+---------------------------------------------------------
+Buffer  19  removed from free list 
+Process  26235  will get buffer  19  from hashQ
+
+Process  26235 : RECIEVED BUFFER  19
+
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
+
+<- 5 -><- 17 -><- 29 -><- 13 -><- 1 ->
+
+<- 2 -><- 6 -><- 10 -><- 18 -><- 14 -><- 26 ->
+
+<- 3 -><- 15 -><- 19 -><- 11 ->
+
+
+ 26235  FreeList :
+<- 11 -><- 26 -><- 13 -><- 1 ->
+Process  26235  has unlocked buffer  19             Lock status: False
+
+---------------------------------------------------------
+Process  26235  has requested block number  15
+---------------------------------------------------------
+Buffer  15  removed from free list 
+Process  26235  will get buffer  15  from hashQ
+
+Process  26235 : RECIEVED BUFFER  15
+
+ 26235  HashQ : 
+<- 4 -><- 8 -><- 12 -><- 16 -><- 0 ->
+
+<- 5 -><- 17 -><- 29 -><- 13 -><- 1 ->
+
+<- 2 -><- 6 -><- 10 -><- 18 -><- 14 -><- 26 ->
+
+<- 3 -><- 15 -><- 19 -><- 11 ->
+
+
+ 26235  FreeList :
+<- 11 -><- 26 -><- 13 -><- 1 -><- 19 ->
+Delayed Write:  15
+Process  26235  has unlocked buffer  15             Lock status: False
+
+~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~

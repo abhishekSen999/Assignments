@@ -16,9 +16,11 @@ class BufferDataStructure(object):
         if(freeListSize < 1):
             return
         self.freeListSize = freeListSize
-        self.freeListHeader = BufferHeader.BufferHeader(0) #added BufferHeader class type to manager and using this so that it can be shared among processes
+        #adding BufferHeader class type to manager and using this so that it can be shared among processes
+        self.freeListHeader = BufferHeader.BufferHeader(0)
         prevBlock = self.freeListHeader
-        # implememnting the circular free list
+
+        # implementing the (circular doubly linked) free list
         for i in range(1, self.freeListSize):
             block = BufferHeader.BufferHeader(i)
             prevBlock.addNextFreeList(block)
@@ -37,6 +39,7 @@ class BufferDataStructure(object):
         """
         self.hashQSize=hashQSize
         self.hashQ=[]
+        #creating 4 empty hashQ
         for i in range(self.hashQSize):
             self.hashQ.append(None)
 
@@ -74,13 +77,14 @@ class BufferDataStructure(object):
             return True
         return False
 
+    # adding a buffer to the tail of the freelist 
     def addToFreeListEnd(self, blockNumber):
 
         #if being added to free list then it means it is in hashQ
         block=self.findBlockInHashQ(blockNumber)
 
 
-
+        #adding a buffer to the empty freelist
         if(self.freeListHeader == None):
             self.freeListHeader = block
             block.addNextFreeList(block)
@@ -94,11 +98,13 @@ class BufferDataStructure(object):
         block.addNextFreeList(self.freeListHeader)
         self.freeListHeader.addPrevFreeList(block)
 
+    # adding a buffer to the head of the freelist (in special cases)
     def addToFreeListFirst(self, blockNumber):
+
         #if being added to free list then it means it is in hashQ
         block=self.findBlockInHashQ(blockNumber)
 
-
+        #adding a buffer to the empty freelist
         if(self.freeListHeader == None):
             self.freeListHeader = block
             block.addNextFreeList(block)
@@ -111,6 +117,7 @@ class BufferDataStructure(object):
 
         block.addNextFreeList(self.freeListHeader)
         self.freeListHeader.addPrevFreeList(block)
+
         # only change in add to first from adding to end as it is a circular Queue
         self.freeListHeader = block
 
@@ -145,13 +152,13 @@ class BufferDataStructure(object):
         # removing links from present block
         block.removeNextFreeList()
         block.removePrevFreeList()
-        print("removed from free list ",block.getBlockNumber())
+        print("Buffer ",block.getBlockNumber(), " removed from free list ")
         return block.getBlockNumber()
 
     def printFreeList(self):
         block = self.freeListHeader
         if(block==None):
-            print("empty freeList")
+            print("Empty freeList")
         while(block!=None):
             print("<-", block.getBlockNumber(), "->", end="")
             block = block.getNextFreeList()
@@ -169,6 +176,7 @@ class BufferDataStructure(object):
     """
 
     def findBlockInHashQ(self, blockNumber ):
+        # queue = blocknum MOD 4
         queue=possibleBlock=self.hashQ[blockNumber%self.hashQSize] #possible queue
         while(queue!=None):
             if(possibleBlock.getBlockNumber()==blockNumber):
@@ -194,12 +202,14 @@ class BufferDataStructure(object):
             block=BufferHeader.BufferHeader(blockNumber)
         queueStart=self.hashQ[block.getBlockNumber() %self.hashQSize] #queue to which the block has to be added 
     
-        if (queueStart==None):#if queue is empty
+        print("Buffer ",block.getBlockNumber()," added to the hash queue")
+        #if queue is empty
+        if (queueStart==None):
             
             self.hashQ[block.getBlockNumber() %self.hashQSize]=block
             block.addNextHashQ(block)
             block.addPrevHashQ(block)
-            return 1 ##success
+            return 1            ##success
         queueEnd=queueStart.getPrevHashQ()
 
         queueEnd.addNextHashQ(block)
@@ -236,7 +246,7 @@ class BufferDataStructure(object):
         for i in range(self.hashQSize ):
             block=self.hashQ[i]
             if(block==None):
-                print("empty\n")
+                print("Empty\n")
                 continue
 
             while(True):
@@ -249,19 +259,18 @@ class BufferDataStructure(object):
 
 
 
-    #code for block manipulation through this memory pool
-    
+    '''
+    Code for block manipulation through this memory pool
+    '''
 
-    # block number manipulation
+    #block number manipulation
     def setBlockNumber(self,oldBlockNumber,newBlockNumber):
         buffer=self.findBlockInHashQ(oldBlockNumber)
         if(buffer==None):
             buffer=self.findInFreeList(oldBlockNumber)
         buffer.setBlockNumber(newBlockNumber)
 
-    # def setBlockNumberFreeList(self,oldBlockNumber,newBlockNumber):
-    #     buffer=self.findInFreeList(oldBlockNumber)
-    #     buffer.setBlockNumber(newBlockNumber)
+
 
 
     #status manipulation
@@ -312,8 +321,8 @@ class BufferDataStructure(object):
 
     
 
-    
-    
+
+
 
 
         

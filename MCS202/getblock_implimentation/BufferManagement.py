@@ -3,76 +3,86 @@ import AsynchronousWrite
 import time
 import os
 import BufferDataStructure
+
 def getBlock(blockNumber,lock,bufferDataStructure):
     bufferFound=False
     while (not bufferFound):
 
-        lock.acquire()#lock
+        lock.acquire()     #lock
+
+        #The buffer is in the hashQ 
         if (bufferDataStructure.isPresentInHashQ(blockNumber)):
-
-
             #buffer=hashQ.findBlockInHashQ(blockNumber)
             if(bufferDataStructure.isLocked(blockNumber)):
 
-                #for revealing the scenario under which process is going to sleep
-                print("process: ",os.getpid()," is going to sleep as buffer ",blockNumber," is present in hashQ and is busy")
+                #For revealing the scenario under which process is going to sleep
+                print("Process ",os.getpid()," is going to sleep as buffer ",blockNumber," is present in hashQ and is busy")
                 lock.release()
                 time.sleep(4)
                 continue
             
-            
+            #Reqiured buffer is in the hash queue and unlocked
             bufferDataStructure.setLockedBit(blockNumber)
             bufferDataStructure.removeFromFreeList(blockNumber)
 
-            #for revealing the scenario under which process is going to sleep
-            print("process: ",os.getpid(),"  will get buffer  ",blockNumber," from hashQ")
+            #Return the buffer to the requesting process
+            print("Process ",os.getpid()," will get buffer ",blockNumber," from hashQ")
 
             lock.release()
             return blockNumber
-        else:
-            if (bufferDataStructure.isEmptyFreeList()):
 
-                #for revealing the scenario under which process is going to sleep
-                print("process: ",os.getpid()," is going to sleep as freeList is empty")
+        #Buffer is not in the hashQ. Hence, check freelist for the buffer  
+        else:
+            #Freelist is empty
+            if (bufferDataStructure.isEmptyFreeList()):   
+
+                #For revealing the scenario under which process is going to sleep
+                print("Process ",os.getpid()," is going to sleep as freeList is empty")
 
                 lock.release()
-                time.sleep(4)
+                time.sleep(4) 
                 continue
 
-
+            #Freelist is not empty
             blockNumber_freeList=bufferDataStructure.getAnyFromFreeList() #just getting the first free buffer(not removing from free list yet)
 
+            #Check if the buffer is marked as 'delayed write'
             if(bufferDataStructure.isDelayedWrite(blockNumber_freeList)):
 
-                #now removing it from free list
+                #Now removing it from free list
                 bufferDataStructure.removeFromFreeList(blockNumber_freeList)
-                #for revealing the scenario under which process is going to do asynchronous write
-                print("process: ",os.getpid()," came across block number: ",blockNumber_freeList, "marked as delayed write so is executing asynchronous write")
+
+                #For revealing the scenario under which process is going to do asynchronous write
+                print("Process ",os.getpid()," came across free buffer ",blockNumber_freeList, " but marked as delayed write so is executing asynchronous write")
                 
                 lock.release()
                 AsynchronousWrite.asynchronousWrite(lock,bufferDataStructure,blockNumber_freeList)
                 continue
 
-
+            #Found a free buffer in the freelist 
             bufferDataStructure.removeFromHashQ(blockNumber_freeList)
 
-            print("process: ",os.getpid()," is will replace buffer  ",blockNumber_freeList,"  from freeList with buffer ",blockNumber)
+            print("Replace buffer ",blockNumber_freeList," in freeList, with buffer ",blockNumber)
 
             bufferDataStructure.setBlockNumber(blockNumber_freeList,blockNumber)
             
+            #Add buffer to the new hash queue
             bufferDataStructure.addBlockToHashQ(blockNumber)
-            bufferDataStructure.removeFromFreeList(blockNumber)#as its block number has changed ,( it is removed from freeList using new block number 
-            
+
+            #remve it from the old hash queue
+            bufferDataStructure.removeFromFreeList(blockNumber) 
+
+            #Update status of the buffer
             bufferDataStructure.setLockedBit(blockNumber)
-            bufferDataStructure.clearValidBit(blockNumber)#making it invalid
+            bufferDataStructure.clearValidBit(blockNumber)
 
             #for revealing the scenario under which process is returning
-            # print("process: ",os.getpid()," is will get buffer  ",buffer.getBlockNumber(),"  from freeList")
+            #print("process: ",os.getpid()," is will get buffer  ",buffer.getBlockNumber(),"  from freeList")
 
             lock.release()
             return blockNumber
 
-                
 
-            
+
+
 

@@ -3,7 +3,7 @@ class BufferHeader(object):
     def __init__(self,blockNumber=None):
         
         if(blockNumber==None):
-            self.block_number=0 #valid block  numbers are from 0 onwards
+            self.block_number=0       #valid block numbers are from 0 onwards
         else:
             self.block_number=blockNumber
         self.status_locked=0

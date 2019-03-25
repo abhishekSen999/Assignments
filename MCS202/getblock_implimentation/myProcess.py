@@ -18,7 +18,7 @@ def pseudoOperation(bufferDataStructure ,buffer):
     time.sleep(2) #simulating an operation
     operation=random.randint(0,3)
     if(operation==0):
-        print("delayed Write: ",buffer)
+        print("Delayed Write: ",buffer)
         bufferDataStructure.setDelayedWriteBit(buffer)
         bufferDataStructure.setValidBit(buffer)
     elif(operation==1):
@@ -26,21 +26,23 @@ def pseudoOperation(bufferDataStructure ,buffer):
     elif(operation==2):
         bufferDataStructure.clearValidBit(buffer)
     elif(operation==3):
-        print("process: ",os.getpid()," is going into long sleep")
+        print("Process ",os.getpid()," is going into long sleep")
         time.sleep(15)
-        print("process: ",os.getpid()," woke up")
+        print("Process ",os.getpid()," woke up")
 
 
 def pseudoBRelease(bufferDataStructure,lock,buffer):
     lock.acquire()
     if(bufferDataStructure.isValid(buffer)):
+        #adding the buffer to the tail of the freelist
         bufferDataStructure.addToFreeListEnd(buffer)
     else:
+        #adding the buffer to the head of the freelist(invalid data)
         bufferDataStructure.addToFreeListFirst(buffer)
 
-    
+    #Unlock the buffer
     bufferDataStructure.clearLockedBit(buffer)
-    print("process: ",os.getpid()," is will unlock buffer  ",buffer," lock status: ",bufferDataStructure.isLocked(buffer))
+    print("Process ",os.getpid()," has unlocked buffer ",buffer,"            Lock status:",bufferDataStructure.isLocked(buffer))
     lock.release()
 
 
@@ -48,15 +50,17 @@ def process(bufferDataStructure,lock,maxNoOfBlocks):
     
     i=0
     while(i<10):
-        time.sleep(2)#process will request a random block after every 2 second
+        time.sleep(2) #process will request a random block after every 2 second
         requestedBlock=random.randint(0,maxNoOfBlocks-1)
-        print("process : ",os.getpid()," has requested block number : ",requestedBlock)
+        print("\n---------------------------------------------------------")
+        print("Process ",os.getpid()," has requested block number ",requestedBlock)
+        print("---------------------------------------------------------")
         recievedBuffer=BufferManagement.getBlock(requestedBlock,lock,bufferDataStructure)
-        print("process : ",os.getpid(),"recieved buffer: ",recievedBuffer)
+        print("\nProcess ",os.getpid(),": RECIEVED BUFFER ",recievedBuffer)
 
-        print("\n",os.getpid()," hashQ: ")
+        print("\n",os.getpid()," HashQ : ")
         bufferDataStructure.printHashQ()
-        print("\n",os.getpid()," freeList")
+        print("\n",os.getpid()," FreeList :")
         bufferDataStructure.printFreeList()
 
         

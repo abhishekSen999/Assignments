@@ -26,22 +26,29 @@ manager.start()
 bufferDataSructure=manager.BufferDataStructure(freeListSize,lengthOfHashQ)
 bufferDataSructure.mapFreeListIntoHashQ()
 
-print("Initial State of hashQ")
+print("\nInitial State of hashQ")
 bufferDataSructure.printHashQ()
-print("Initial State of freeList")
+print("\nInitial State of freeList")
 bufferDataSructure.printFreeList()
 
 lock=multiprocessing.Lock()
+
+#Creating processes
 p1=multiprocessing.Process(target=myProcess.process,args=(bufferDataSructure,lock,maxNoOfBlocks,))
 p2=multiprocessing.Process(target=myProcess.process,args=(bufferDataSructure,lock,maxNoOfBlocks,))
 p3=multiprocessing.Process(target=myProcess.process,args=(bufferDataSructure,lock,maxNoOfBlocks,))
+
+#Starting processes
 p1.start()
 p2.start()
 p3.start()
+
 p1.join()
 p2.join()
 p3.join()
-print("end")
+
+#print when all the processes are finished
+print("\n~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~\n")
 
 
 
