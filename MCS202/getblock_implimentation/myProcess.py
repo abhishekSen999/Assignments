@@ -13,23 +13,26 @@ def pseudoOperation(bufferDataStructure ,buffer):
     """
     0-write operation followed by marking buffer delayed write block and validating block 
     1-work done(disk read is done if buffer was not initially valid), validate buffer 
-    2-mark buffer invalid
+    2-mark buffer invalid to simulate I/O error
     3-process went into long sleep while holding the buffer
     """
+    bufferDataStructure.setValidBit(buffer) # as after each bread the buffer is expected to be valid except for exceptions handled by operation 2
     time.sleep(2) #simulating an operation
     operation=random.randint(0,3)
     if(operation==0):
-        print("Delayed Write: ",buffer)
+        print("Operation 0 - Process ",os.getpid(), " Delayed Write: ",buffer)
         bufferDataStructure.setDelayedWriteBit(buffer)
         bufferDataStructure.setValidBit(buffer)
     elif(operation==1):
+        print("Operation 1 - Process ",os.getpid(), " Buffer: ",buffer)
         bufferDataStructure.setValidBit(buffer)
     elif(operation==2):
+        print("Operation 2 - Process ",os.getpid(), " Buffer: ",buffer)        
         bufferDataStructure.clearValidBit(buffer)
     elif(operation==3):
-        print("Process ",os.getpid()," is going into long sleep")
+        print("Process ",os.getpid()," is going into long sleep with buffer ",buffer)
         time.sleep(15)
-        print("Process ",os.getpid()," woke up")
+        print("Process ",os.getpid()," woke up from long sleep with buffer ",buffer)
 
 
 def pseudoBRelease(bufferDataStructure,lock,buffer):
@@ -46,13 +49,15 @@ def pseudoBRelease(bufferDataStructure,lock,buffer):
     #Unlock the buffer
     bufferDataStructure.clearLockedBit(buffer)
     print("Process ",os.getpid()," has unlocked buffer ",buffer,"            Lock status:",bufferDataStructure.isLocked(buffer))
+    print("FreeList - Process ",os.getpid())
+    bufferDataStructure.printFreeList()
     lock.release()
 
 
 def process(bufferDataStructure,lock,maxNoOfBlocks):
     
     i=0
-    while(i<50):
+    while(i<10):
         time.sleep(2) #process will request a random block after every 2 second
         requestedBlock=random.randint(0,maxNoOfBlocks-1)
         print("\n---------------------------------------------------------\nProcess ",os.getpid()," has requested block number ",requestedBlock,"\n---------------------------------------------------------\n")
