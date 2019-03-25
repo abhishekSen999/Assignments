@@ -222,6 +222,9 @@ class BufferDataStructure(object):
 
     def removeFromHashQ(self,blockNumber):
         block=self.findBlockInHashQ(blockNumber)
+        if(block==None):
+            block=self.findInFreeList(blockNumber)
+
 
      
         if(block.getNextHashQ()==None and block.getPrevHashQ()==None):#block not in hashQ(starting cases)

@@ -11,8 +11,8 @@ class BufferHeader(object):
         self.status_delayed_write=0
         self.waiting_process_count=0
 
-        self.hashQ_next=None
-        self.hashQ_prev=None
+        self.hashQ_next=self
+        self.hashQ_prev=self
         self.freeList_next=None
         self.freeList_prev=None
 
