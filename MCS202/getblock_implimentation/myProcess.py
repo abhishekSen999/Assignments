@@ -52,9 +52,7 @@ def process(bufferDataStructure,lock,maxNoOfBlocks):
     while(i<10):
         time.sleep(2) #process will request a random block after every 2 second
         requestedBlock=random.randint(0,maxNoOfBlocks-1)
-        print("\n---------------------------------------------------------")
-        print("Process ",os.getpid()," has requested block number ",requestedBlock)
-        print("---------------------------------------------------------")
+        print("\n---------------------------------------------------------\nProcess ",os.getpid()," has requested block number ",requestedBlock,"\n---------------------------------------------------------")
         recievedBuffer=BufferManagement.getBlock(requestedBlock,lock,bufferDataStructure)
         print("\nProcess ",os.getpid(),": RECIEVED BUFFER ",recievedBuffer)
 

@@ -277,14 +277,20 @@ class BufferDataStructure(object):
 
     def setLockedBit(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         buffer.setLockedBit()
 
     def clearLockedBit(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         buffer.clearLockedBit()
 
     def isLocked(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         return buffer.isLocked()
 
 
@@ -292,14 +298,20 @@ class BufferDataStructure(object):
     
     def setValidBit(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         buffer.setValidBit()
     
     def clearValidBit(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         buffer.clearValidBit()
 
     def isValid(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         return buffer.isValid()
         
 
@@ -307,14 +319,20 @@ class BufferDataStructure(object):
 
     def setDelayedWriteBit(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         buffer.setDelayedWriteBit()
     
     def clearDelayedWriteBit(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         buffer.clearDelayedWriteBit()
 
     def isDelayedWrite(self,blockNumber):
         buffer=self.findBlockInHashQ(blockNumber)
+        if(buffer==None):
+            buffer=self.findInFreeList(blockNumber)
         return buffer.isDelayedWrite()
 
 

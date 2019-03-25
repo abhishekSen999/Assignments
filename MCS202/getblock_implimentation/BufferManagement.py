@@ -27,7 +27,7 @@ def getBlock(blockNumber,lock,bufferDataStructure):
 
             #Return the buffer to the requesting process
             print("Process ",os.getpid()," will get buffer ",blockNumber," from hashQ")
-
+            bufferFound=True
             lock.release()
             return blockNumber
 
@@ -64,6 +64,7 @@ def getBlock(blockNumber,lock,bufferDataStructure):
 
             print("Replace buffer ",blockNumber_freeList," in freeList, with buffer ",blockNumber)
 
+            #replacing the old block number(returnrd from the freeList ) with the new block number
             bufferDataStructure.setBlockNumber(blockNumber_freeList,blockNumber)
             
             #Add buffer to the new hash queue
@@ -76,9 +77,8 @@ def getBlock(blockNumber,lock,bufferDataStructure):
             bufferDataStructure.setLockedBit(blockNumber)
             bufferDataStructure.clearValidBit(blockNumber)
 
-            #for revealing the scenario under which process is returning
-            #print("process: ",os.getpid()," is will get buffer  ",buffer.getBlockNumber(),"  from freeList")
 
+            bufferFound=True
             lock.release()
             return blockNumber
 

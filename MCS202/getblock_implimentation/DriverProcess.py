@@ -19,12 +19,13 @@ freeListSize=20
 maxNoOfBlocks=30
 
 #using shared memory objects using BaseManager from multiprocessing library
+#BaseManager is used to create proxy classes in this session which are present in the shared memory
 BaseManager.register('BufferDataStructure',BufferDataStructure.BufferDataStructure)
 manager=BaseManager()
 manager.start()
 
 bufferDataSructure=manager.BufferDataStructure(freeListSize,lengthOfHashQ)
-bufferDataSructure.mapFreeListIntoHashQ()
+#bufferDataSructure.mapFreeListIntoHashQ()
 
 print("\nInitial State of hashQ")
 bufferDataSructure.printHashQ()
@@ -43,6 +44,7 @@ p1.start()
 p2.start()
 p3.start()
 
+#waiting for processes to join (join- finish their operation and join this execution)
 p1.join()
 p2.join()
 p3.join()
