@@ -51,12 +51,13 @@ def getBlock(blockNumber,lock,bufferDataStructure):
 
                 #Now removing it from free list
                 bufferDataStructure.removeFromFreeList(blockNumber_freeList)
-
+                print("freelist after removing ",blockNumber_freeList)
+                bufferDataStructure.printFreeList()
                 #For revealing the scenario under which process is going to do asynchronous write
                 print("Process ",os.getpid()," came across free buffer ",blockNumber_freeList, " but marked as delayed write so is executing asynchronous write")
-                
+                AsynchronousWrite.asynchronousWrite(bufferDataStructure,blockNumber_freeList)
                 lock.release()
-                AsynchronousWrite.asynchronousWrite(lock,bufferDataStructure,blockNumber_freeList)
+               
                 continue
 
             #Found a free buffer in the freelist 
@@ -64,6 +65,9 @@ def getBlock(blockNumber,lock,bufferDataStructure):
 
             print("Replace buffer ",blockNumber_freeList," in freeList, with buffer ",blockNumber)
 
+
+            print("Buffer ",blockNumber_freeList," is removed from free list")
+            print("Buffer ",blockNumber," added to the hash queue")
             #replacing the old block number(returnrd from the freeList ) with the new block number
             bufferDataStructure.setBlockNumber(blockNumber_freeList,blockNumber)
             

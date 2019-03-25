@@ -3,7 +3,7 @@ import BufferHeader
 import time
 import os
 
-def _writeAsynchronously(lock,bufferDataStructure,blockNumber):
+def _writeAsynchronously(bufferDataStructure,blockNumber):
     #locking as this is supposed to be a 
     #lock.acquire()
 
@@ -18,9 +18,9 @@ def _writeAsynchronously(lock,bufferDataStructure,blockNumber):
     bufferDataStructure.addToFreeListFirst(blockNumber)
     #print("reached",buffer.isDelayedWrite(),"pid ",os.getpid())
 
-def asynchronousWrite(lock,bufferDataStructure,blockNumber):
+def asynchronousWrite(bufferDataStructure,blockNumber):
     
-    writingProcess=multiprocessing.Process(target=_writeAsynchronously,args=(lock,bufferDataStructure,blockNumber,))
+    writingProcess=multiprocessing.Process(target=_writeAsynchronously,args=(bufferDataStructure,blockNumber,))
     writingProcess.start()
     
     return 1

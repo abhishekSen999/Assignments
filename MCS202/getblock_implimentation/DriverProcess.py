@@ -25,7 +25,7 @@ manager=BaseManager()
 manager.start()
 
 bufferDataSructure=manager.BufferDataStructure(freeListSize,lengthOfHashQ)
-#bufferDataSructure.mapFreeListIntoHashQ()
+bufferDataSructure.mapFreeListIntoHashQ()
 
 print("\nInitial State of hashQ")
 bufferDataSructure.printHashQ()

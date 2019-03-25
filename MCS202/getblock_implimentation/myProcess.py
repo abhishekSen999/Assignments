@@ -9,6 +9,7 @@ import random
 
 
 def pseudoOperation(bufferDataStructure ,buffer):
+    #print("operation by process: ",os.getpid()," on buffer: ",buffer)
     """
     0-write operation followed by marking buffer delayed write block and validating block 
     1-work done(disk read is done if buffer was not initially valid), validate buffer 
@@ -32,7 +33,9 @@ def pseudoOperation(bufferDataStructure ,buffer):
 
 
 def pseudoBRelease(bufferDataStructure,lock,buffer):
+    
     lock.acquire()
+    #print("brelease by process: ",os.getpid()," on buffer: ",buffer)
     if(bufferDataStructure.isValid(buffer)):
         #adding the buffer to the tail of the freelist
         bufferDataStructure.addToFreeListEnd(buffer)
@@ -49,10 +52,10 @@ def pseudoBRelease(bufferDataStructure,lock,buffer):
 def process(bufferDataStructure,lock,maxNoOfBlocks):
     
     i=0
-    while(i<10):
+    while(i<50):
         time.sleep(2) #process will request a random block after every 2 second
         requestedBlock=random.randint(0,maxNoOfBlocks-1)
-        print("\n---------------------------------------------------------\nProcess ",os.getpid()," has requested block number ",requestedBlock,"\n---------------------------------------------------------")
+        print("\n---------------------------------------------------------\nProcess ",os.getpid()," has requested block number ",requestedBlock,"\n---------------------------------------------------------\n")
         recievedBuffer=BufferManagement.getBlock(requestedBlock,lock,bufferDataStructure)
         print("\nProcess ",os.getpid(),": RECIEVED BUFFER ",recievedBuffer)
 

@@ -43,10 +43,6 @@ class BufferHeader(object):
 
     def isLocked(self):
 
-        # if(self.freeList_next==None and self.freeList_prev==None):
-        #     return True
-        # else:
-        #     return False
         if(self.status_locked==1):
             return True
         return False

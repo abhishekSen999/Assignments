@@ -152,7 +152,7 @@ class BufferDataStructure(object):
         # removing links from present block
         block.removeNextFreeList()
         block.removePrevFreeList()
-        print("Buffer ",block.getBlockNumber(), " removed from free list ")
+        #print("Buffer ",block.getBlockNumber(), " removed from free list ")
         return block.getBlockNumber()
 
     def printFreeList(self):
@@ -202,7 +202,7 @@ class BufferDataStructure(object):
             block=BufferHeader.BufferHeader(blockNumber)
         queueStart=self.hashQ[block.getBlockNumber() %self.hashQSize] #queue to which the block has to be added 
     
-        print("Buffer ",block.getBlockNumber()," added to the hash queue")
+        #print("Buffer ",block.getBlockNumber()," added to the hash queue")
         #if queue is empty
         if (queueStart==None):
             
