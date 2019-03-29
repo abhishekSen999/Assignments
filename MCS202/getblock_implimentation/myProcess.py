@@ -5,7 +5,7 @@ import BufferDataStructure
 import BufferHeader
 import BufferManagement
 import os
-import random
+import signal
 
 
 def pseudoOperation(bufferDataStructure ,buffer):
@@ -35,7 +35,7 @@ def pseudoOperation(bufferDataStructure ,buffer):
         print("Process ",os.getpid()," woke up from long sleep with buffer ",buffer)
 
 
-def pseudoBRelease(bufferDataStructure,lock,buffer):
+def pseudoBRelease(sleepQueue,bufferDataStructure,lock,buffer):
     
     lock.acquire()
     #print("brelease by process: ",os.getpid()," on buffer: ",buffer)
@@ -51,17 +51,39 @@ def pseudoBRelease(bufferDataStructure,lock,buffer):
     print("Process ",os.getpid()," has unlocked buffer ",buffer,"            Lock status:",bufferDataStructure.isLocked(buffer))
     print("FreeList - Process ",os.getpid())
     bufferDataStructure.printFreeList()
+
+   
+    
+    wakeAllProcessWaitingForAnyBuffer(sleepQueue)
+    wakeAllProcessWaitingForBuffer(sleepQueue,buffer)
     lock.release()
 
+def wakeAllProcessWaitingForBuffer(sleepQueue,buffer):
+    #-2 is returned when no such entry for buffer in sleepQueue
+    list=sleepQueue.getPidsWaitingForBuffer(buffer)
+    if(list==-2):
+        return
+    for i in list:
+        os.kill(i,signal.SIGINT)
 
-def process(bufferDataStructure,lock,maxNoOfBlocks):
+
+def wakeAllProcessWaitingForAnyBuffer(sleepQueue):
+    #-2 is returned when no such entry for buffer in sleepQueue
+    list=sleepQueue.getPidsWaitingForBuffer(-1)
+    if(list==-2):
+        return
+    for i in list:
+        os.kill(i,signal.SIGINT)
+
+
+def process(sleepQueue,bufferDataStructure,lock,maxNoOfBlocks):
     
     i=0
     while(i<10):
         time.sleep(2) #process will request a random block after every 2 second
         requestedBlock=random.randint(0,maxNoOfBlocks-1)
         print("\n---------------------------------------------------------\nProcess ",os.getpid()," has requested block number ",requestedBlock,"\n---------------------------------------------------------\n")
-        recievedBuffer=BufferManagement.getBlock(requestedBlock,lock,bufferDataStructure)
+        recievedBuffer=BufferManagement.getBlock(sleepQueue,requestedBlock,lock,bufferDataStructure)
         print("\nProcess ",os.getpid(),": RECIEVED BUFFER ",recievedBuffer)
 
         print("\n",os.getpid()," HashQ : ")
@@ -71,7 +93,7 @@ def process(bufferDataStructure,lock,maxNoOfBlocks):
 
         
         pseudoOperation(bufferDataStructure ,recievedBuffer)
-        pseudoBRelease(bufferDataStructure,lock,recievedBuffer)
+        pseudoBRelease(sleepQueue,bufferDataStructure,lock,recievedBuffer)
         i+=1
 
         

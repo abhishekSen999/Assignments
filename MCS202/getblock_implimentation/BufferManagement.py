@@ -3,8 +3,25 @@ import AsynchronousWrite
 import time
 import os
 import BufferDataStructure
+import signal
+import SignalCatcher
 
-def getBlock(blockNumber,lock,bufferDataStructure):
+
+def mySleepForBuffer(sleepQueue,buffer):
+    signal.signal(signal.SIGINT,SignalCatcher.sigint_catcher)
+    sleepQueue.add(buffer,os.getpid())
+    signal.pause()#process will sleep till SIGINT signal is raised
+    
+
+
+def mySleepForAnyBuffer(sleepQueue):
+    signal.signal(signal.SIGHUP,SignalCatcher.sighup_catcher)
+    sleepQueue.add(-1,os.getpid()) #as processes waiting for any buffer state -1 as required buffer number
+    signal.pause()#process will sleep till SIGHUP signal is raised
+    
+
+
+def getBlock(sleepQueue,blockNumber,lock,bufferDataStructure):
     bufferFound=False
     while (not bufferFound):
 
@@ -18,7 +35,8 @@ def getBlock(blockNumber,lock,bufferDataStructure):
                 #For revealing the scenario under which process is going to sleep
                 print("Process ",os.getpid()," is going to sleep as buffer ",blockNumber," is present in hashQ and is busy")
                 lock.release()
-                time.sleep(4)
+                # time.sleep(4)
+                mySleepForBuffer(sleepQueue,blockNumber)
                 continue
             
             #Reqiured buffer is in the hash queue and unlocked
@@ -40,7 +58,7 @@ def getBlock(blockNumber,lock,bufferDataStructure):
                 print("Process ",os.getpid()," is going to sleep as freeList is empty")
 
                 lock.release()
-                time.sleep(4) 
+                mySleepForAnyBuffer(sleepQueue) 
                 continue
 
             #Freelist is not empty
