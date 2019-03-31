@@ -63,17 +63,17 @@ def wakeAllProcessWaitingForBuffer(sleepQueue,buffer):
     list=sleepQueue.getPidsWaitingForBuffer(buffer)
     if(list==-2):
         return
-    for i in list:
-        os.kill(i,signal.SIGINT)
+    for pid in list:
+        os.kill(pid,signal.SIGINT)
 
 
 def wakeAllProcessWaitingForAnyBuffer(sleepQueue):
     #-2 is returned when no such entry for buffer in sleepQueue
-    list=sleepQueue.getPidsWaitingForBuffer(-1)
+    list=sleepQueue.getPidsWaitingForAnyBuffer()
     if(list==-2):
         return
-    for i in list:
-        os.kill(i,signal.SIGINT)
+    for pid in list:
+        os.kill(pid,signal.SIGHUP)
 
 
 def process(sleepQueue,bufferDataStructure,lock,maxNoOfBlocks):

@@ -39,6 +39,7 @@ bufferDataSructure.printFreeList()
 lock=multiprocessing.Lock()
 
 #Creating processes
+#Process(Process(target=callable object,args=argument tuple for the target invocation)
 p1=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
 p2=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
 p3=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
@@ -47,14 +48,9 @@ p3=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataS
 p1.start()
 p2.start()
 p3.start()
-
-#while( p1.is_alive() or p2.is_alive() or p3.is_alive() ):
-
     
 
-
 #waiting for processes to join (join- finish their operation and join this execution)
-
 p1.join()
 p2.join()
 p3.join()

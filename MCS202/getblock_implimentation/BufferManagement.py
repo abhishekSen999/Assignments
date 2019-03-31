@@ -6,14 +6,14 @@ import BufferDataStructure
 import signal
 import SignalCatcher
 
-
+#sleep function to make a process sleep for a particular buffer
 def mySleepForBuffer(sleepQueue,buffer):
     signal.signal(signal.SIGINT,SignalCatcher.sigint_catcher)
     sleepQueue.add(buffer,os.getpid())
     signal.pause()#process will sleep till SIGINT signal is raised
     
 
-
+#sleep function to make a process sleep for any buffer
 def mySleepForAnyBuffer(sleepQueue):
     signal.signal(signal.SIGHUP,SignalCatcher.sighup_catcher)
     sleepQueue.add(-1,os.getpid()) #as processes waiting for any buffer state -1 as required buffer number
@@ -27,7 +27,7 @@ def getBlock(sleepQueue,blockNumber,lock,bufferDataStructure):
 
         lock.acquire()     #lock
 
-        #The buffer is in the hashQ 
+        #1. The buffer is in the hashQ 
         if (bufferDataStructure.isPresentInHashQ(blockNumber)):
             #buffer=hashQ.findBlockInHashQ(blockNumber)
             if(bufferDataStructure.isLocked(blockNumber)):
@@ -49,7 +49,7 @@ def getBlock(sleepQueue,blockNumber,lock,bufferDataStructure):
             lock.release()
             return blockNumber
 
-        #Buffer is not in the hashQ. Hence, check freelist for the buffer  
+        #2. Buffer is not in the hashQ. Hence, check freelist for the buffer  
         else:
             #Freelist is empty
             if (bufferDataStructure.isEmptyFreeList()):   
