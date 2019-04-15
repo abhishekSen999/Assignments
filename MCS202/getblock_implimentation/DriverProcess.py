@@ -40,6 +40,7 @@ bufferDataSructure.printFreeList()
 
 lock=multiprocessing.Lock()
 
+<<<<<<< HEAD
 #Creating processes_array
 process_array=np.empty(noOfProcesses,dtype=object)
 
@@ -51,12 +52,30 @@ for i in range(noOfProcesses):
     process_array[i].start()
 
 
+=======
+#Creating processes
+#Process(Process(target=callable object,args=argument tuple for the target invocation)
+p1=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
+p2=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
+p3=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
+
+#Starting processes
+p1.start()
+p2.start()
+p3.start()
+>>>>>>> db90a51dbcfae65b2fab79291837087e94d5d0f4
     
 
-
 #waiting for processes to join (join- finish their operation and join this execution)
+<<<<<<< HEAD
 for i in range(noOfProcesses):
     process_array[i].join()
+=======
+p1.join()
+p2.join()
+p3.join()
+
+>>>>>>> db90a51dbcfae65b2fab79291837087e94d5d0f4
 #print when all the processes are finished
 print("\n~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~\n")
 
