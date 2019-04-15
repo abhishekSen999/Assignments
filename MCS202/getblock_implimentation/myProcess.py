@@ -7,6 +7,8 @@ import BufferManagement
 import os
 import signal
 
+noOfBufferRequestsByEachProcess=5
+
 
 def pseudoOperation(bufferDataStructure ,buffer):
     #print("operation by process: ",os.getpid()," on buffer: ",buffer)
@@ -48,6 +50,7 @@ def pseudoBRelease(sleepQueue,bufferDataStructure,lock,buffer):
 
     #Unlock the buffer
     bufferDataStructure.clearLockedBit(buffer)
+    
     print("Process ",os.getpid()," has unlocked buffer ",buffer,"            Lock status:",bufferDataStructure.isLocked(buffer))
     print("FreeList - Process ",os.getpid())
     bufferDataStructure.printFreeList()
@@ -79,7 +82,7 @@ def wakeAllProcessWaitingForAnyBuffer(sleepQueue):
 def process(sleepQueue,bufferDataStructure,lock,maxNoOfBlocks):
     
     i=0
-    while(i<10):
+    while(i<noOfBufferRequestsByEachProcess):
         time.sleep(2) #process will request a random block after every 2 second
         requestedBlock=random.randint(0,maxNoOfBlocks-1)
         print("\n---------------------------------------------------------\nProcess ",os.getpid()," has requested block number ",requestedBlock,"\n---------------------------------------------------------\n")

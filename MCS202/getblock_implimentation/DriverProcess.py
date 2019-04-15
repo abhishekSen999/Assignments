@@ -11,6 +11,7 @@ import BufferManagement
 import os
 import myProcess
 import SleepQueue
+import numpy as np
 
 
 
@@ -18,6 +19,7 @@ import SleepQueue
 lengthOfHashQ=4
 freeListSize=20
 maxNoOfBlocks=30
+noOfProcesses=5
 
 #using shared memory objects using BaseManager from multiprocessing library
 #BaseManager is used to create proxy classes in this session which are present in the shared memory
@@ -38,27 +40,23 @@ bufferDataSructure.printFreeList()
 
 lock=multiprocessing.Lock()
 
-#Creating processes
-p1=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
-p2=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
-p3=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
+#Creating processes_array
+process_array=np.empty(noOfProcesses,dtype=object)
 
-#Starting processes
-p1.start()
-p2.start()
-p3.start()
+#initializing the elements in process array with procvesses from the multiprocessing class
+for i in range(noOfProcesses):
+    process_array[i]=multiprocessing.Process(target=myProcess.process,args=(sleepQueue,bufferDataSructure,lock,maxNoOfBlocks,))
 
-#while( p1.is_alive() or p2.is_alive() or p3.is_alive() ):
+for i in range(noOfProcesses):
+    process_array[i].start()
+
 
     
 
 
 #waiting for processes to join (join- finish their operation and join this execution)
-
-p1.join()
-p2.join()
-p3.join()
-
+for i in range(noOfProcesses):
+    process_array[i].join()
 #print when all the processes are finished
 print("\n~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~\n")
 
